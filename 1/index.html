@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>3 Column Preview Card Component</title>
+        <link rel="icon" href="favicon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <style>
+            body {
+                color: white;
+                font-family: circula;
+            }
+            @font-face {
+                font-family: circula;
+                src: url(../circula.ttf);
+            }
+            @media only screen and (orientation: landscape) {
+                main {
+                    display: flex;
+                    height: 100vh;
+                    align-items: center;
+                    margin: auto;
+                    width: 70%;
+                }
+                main>* {
+                    height: 60%;
+                    padding: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                main>:nth-child(1){
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                }
+                main>:nth-child(3){
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
+            }
+            main p {
+                line-height: 1.7em;
+            }
+            a {
+                text-decoration: none;
+                display: block;
+            }
+            a button {
+                background-color: white;
+                padding: 10px;
+                border-radius: 20px;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                border: none;
+                font-weight: 600;
+                outline: none;
+                font-size: small;
+            }
+            main>:nth-child(1) {
+                background-color: #E28525;
+            }
+            main>:nth-child(1) button {
+                color: #E28525;
+            }
+            main>:nth-child(2) button {
+                color: #016972;
+            }
+            main>:nth-child(3) button {
+                color: #004035;
+            }
+            main>:nth-child(2) {
+                background-color: #016972;
+            }
+            main>:nth-child(3) {
+                background-color: #004035;
+            }
+            @media only screen and (orientation: portrait){
+                main {
+                    padding: 10px;
+                }
+                main>* {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    padding: 15px;
+                }
+                main>:nth-child(1) {
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                }
+                main>:nth-child(3) {
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10pxf;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div>
+                <img src="images/icon-sedans.svg">
+                <h2>SEDANS</h2>
+                <p>Choose a Sudan for its affordability and excellent fuel economy. Ideal for crusing the city or on your next road trip.</p>
+                <a href="#"><button>Learn More</button></a>
+            </div>
+            <div>
+                <img src="images/icon-suvs.svg">
+                <h2>SEDANS</h2>
+                <p>Take an SUV for its spacious interior, power, and versatility, perfect for your next family vacation and off-road adventures</p>
+                <a href="#"><button>Learn More</button></a>
+            </div>
+            <div>
+                <img src="images/icon-luxury.svg">
+                <h2>LUXURY</h2>
+                <p>Cruise in the best car brands without the bloated prices. Enjoy the enhanced comfort of a luxury rental and arrive in style</p>
+                <a href="#"><button>Learn More</button></a>
+            </div>
+        </main>
+        <script>
+            window.onload = () => {
+                const img = Array.from(document.getElementsByTagName("img"));
+                img.forEach(element => {
+                    const [x, y] = [element.naturalWidth, element.naturalHeight];
+                    const k = x / y;
+                    const newH =  innerWidth > innerHeight ? 70 : 40;
+                    const newW = k * newH;
+                    element.setAttribute('height', newH + "px");
+                    element.setAttribute('width', newW+ "px");
+                });
+            }
+        </script>
+    </body>
+</html>
