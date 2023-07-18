@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Blogr Landing Page</title>
+        <meta charset="utf-8">
+        <meta name="author" content="Winner Edwin">
+        <link rel="icon" href="kit/images/favicon-32x32.png">
+        <script src="../js/babel.min.js"></script>
+        <script src="../js/react.production.min.js"></script>
+        <script src="../js/react-dom.production.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <div>
+                <div>
+                    <img src="kit/images/logo.svg">
+                    <ul>
+                        <li class="menu prod">Product</li>
+                        <ul><!--Product menu--></ul>
+                        <li class="menu company">Company</li>
+                        <ul><!--Company Menu--></ul>
+                        <li class="menu connect">Connect</li>
+                        <ul><!--Connect Menu--></ul>
+                    </ul>
+                </div>
+                <div><a href="#">Login</a><a href="#" class="color">Sign Up</a></div>
+            </div>
+            <div>
+                <h1>A modern publishing platform</h1>
+                <span>Grow your audience and build your online brand</span>
+                <div>
+                    <a href="#" class="color">Start For Free</a>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <h1>Designed for the future</h1>
+            <div>
+                <div>
+                    <p>Introducing an extensible editor<br><br>Blogr features are exceedingly intuitive which lets you focus on one thing: content creating. The editor supports management of multiple blogs and allows easy manipulation of embeds such as images, videos, and Markdown. Extensiblility with plugins and themes provide easy ways to add functionality or change the looks of a blog.</p>
+                    <p>Robust content management<br><br>Flexible content management enables users to easily move through posts. Increase the usability of your blog by adding customized categories, sections, format, or flow, with this functionality, you're in full control. </p>
+                </div>
+                <div class="right"><img src="kit/images/illustration-editor-desktop.svg"></div>
+            </div>
+            <div>
+                <div><img src="kit/images/illustration-phones.svg"></div>
+                <div>
+                    <p>State of the Art Infrastructure <br><br> With reliability and speed in mind, worldwide data centers provide the backbone for ultra-fast connectivity. This ensures your site will load instantly, no matter where your readers are, keeping your site competitive.</p>
+                </div>
+            </div>
+            <div>
+                <div class="left"><img src="kit/images/illustration-laptop-desktop.svg"></div>
+                <div>
+                    <p>Free, open, simple <br><br>Blogr is a free and open source application backed by a large community of helpful developers. It supports features such as code syntax highlighting, RSS feeds, social media integration, third-party commenting tools, and works seamlessly with Google Analytics. The architecture is clean and is relatively easy to learn.</p>
+                    <p>Poweful tooling <br><br> Batteries included. We built a simple and straightforward CLI tool that makes customization and deployment a breeze, but capable of producing even the most complicated sites.</p>
+                </div>
+            </div>
+        </main>
+        <script>
+            if(innerHeight > innerWidth) {
+                const img = document.querySelectorAll("main img");
+                img[0].src = 'kit/images/illustration-editor-mobile.svg';
+                img[2].src = 'kit/images/illustration-laptop-mobile.svg';
+            }
+        </script>
+        <footer>
+            <img src="kit/images/logo.svg">
+            <div>
+                <ul>
+                    <li>Product</li>
+                    <li>Overview</li>
+                    <li>Pricing</li>
+                    <li>Marketplace</li>
+                    <li>Features</li>
+                    <li>Integrations</li>
+                </ul>
+                <ul>
+                    <li>Company</li>
+                    <li>About</li>
+                    <li>Teamc</li>
+                    <li>Blog</li>
+                    <li>Careers</li>
+                </ul>
+                <ul>
+                    <li>Connect</li>
+                    <li>Contact</li>
+                    <li>Newsletter</li>
+                    <li>Linkedln</li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>
