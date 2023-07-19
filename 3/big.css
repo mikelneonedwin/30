@@ -1,0 +1,288 @@
+@media only screen and (orientation: landscape){
+    header {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 40px 0 40px 0;
+    }
+    header>* {
+        width: 50%;
+        display: flex;
+        align-items: center;
+    }
+    header>:nth-child(2){
+        justify-content: right;
+    }
+    header>:nth-child(2)>div {
+        width: 75%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    header a {
+        color: hsl(229, 31%, 21%);
+    }
+    header a:hover {
+        color: hsl(0, 94%, 66%);
+    }
+    header a:nth-child(4):hover {
+        outline: hsl(0, 94%, 66%) solid 2px;
+        background-color: white;
+    }
+    /*A Simple Bookmark Manager MAIN DIV */
+    main {
+        margin-top: 1%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 70px;
+    }
+    main>:nth-child(1) {
+        display: flex;
+        width: 80%;
+        margin: auto;
+        align-items: center;
+    }
+    main>:nth-child(1)>* {
+        width: 50%;
+    }
+    main>:nth-child(1)>:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+        justify-content: left;
+    }
+    main>:nth-child(1)>:nth-child(1)>* {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
+    main h1 {
+        color: hsl(229, 31%, 21%);
+    }
+    main p {
+        color: hsl(229, 8%, 60%);
+    }
+    main>:nth-child(1)>:nth-child(1) div a {
+        width: 20px;
+        padding: 10px 17px 10px 17px;
+    }
+    main>:nth-child(1)>:nth-child(1) div>:nth-child(2) {
+        color: hsl(229, 31%, 21%);
+        box-shadow: 4px 4px 15px -5px hsl(229, 8%, 60%);
+        border-radius: 5px;
+    }
+    main>:nth-child(1) img {
+        height: 65vh;
+    }
+    /* First image*/
+    main>:nth-child(1)>:nth-child(2)::after {
+        content: "";
+        height: 40vh;
+        width: 87vh;    
+        display: block;
+        position: absolute;
+        background-color: hsl(231, 69%, 60%);
+        top: 50vh;    
+        z-index: -1;
+        transform: translateX(150px);
+        border-bottom-left-radius: 200px;
+    }
+    /*Features*/
+    main>:nth-child(2) {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+    }
+    main>:nth-child(2)>* {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        width: 40%;
+        text-align: center;
+        margin: auto;
+    }
+    main>:nth-child(2)>div {
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 50%;
+    }
+    main>:nth-child(2) button {
+        background-color: inherit;
+        font-size: medium;
+        outline: none;
+        border: none;
+        width: calc(100% / 3);
+        padding: 20px 0px 20px 0px;
+        color: hsl(229, 31%, 21%);
+        cursor: pointer;
+    }
+    main>:nth-child(2) .active {
+        border-bottom: solid hsl(0, 94%, 66%) 3px;
+    }
+    /* Bookmark in one click */ 
+    main>:nth-child(3) {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        margin: auto;
+        gap: 100px;
+    }
+    main>:nth-child(3)>* {
+        width: 50%;
+    }
+    main>:nth-child(3) img {
+        height: 55vh;
+    }
+    main>:nth-child(3)::before {
+        content: "";
+        height: 40vh;
+        width: 100vh;    
+        display: block;
+        position: absolute;
+        background-color: hsl(231, 69%, 60%);
+        top: 170vh;    
+        z-index: -1;
+        transform: translateX(-300px);
+        border-bottom-right-radius: 200px;
+    }
+    /* Downlod the extension */
+    main>:nth-child(4) {
+        margin-top: 5%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    main>:nth-child(4)>*:not(div) {
+        width: 60%;
+        margin: auto;
+        text-align: center;
+    }
+    main>:nth-child(4)>div {
+        width: 100%;
+        margin: auto;
+        margin-top: -10%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 15px;
+    }
+    main>:nth-child(4)>div>div {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 25px;
+        box-shadow: 0px 10px 10px -4px hsl(229, 8%, 60%);
+        padding: 20px 0px 20px 0px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    main>:nth-child(4) a {
+        width: 75%;
+        font-size: medium;
+        margin: auto;
+        background-color: hsl(231, 69%, 60%);
+        color: white;
+        text-align: center;
+        padding: 10px;
+        border: 2px solid white;
+        border-radius: 5px;
+    }
+    main>:nth-child(4) a:hover {
+        background-color: white;
+        border: 2px solid hsl(231, 69%, 60%);
+        color: hsl(231, 69%, 60%);
+    }
+    main>:nth-child(4) span, main>:nth-child(4) strong {
+        display: block;
+        text-align: center;
+    }
+    main>:nth-child(4) span {
+        color: hsl(229, 8%, 60%);
+        margin-top: 5%;
+        font-size: medium;
+    }
+    main>:nth-child(4) div+img {
+        width: 100%;
+    }
+    main>:nth-child(4)>div>:nth-child(2) {
+        margin-top: 10%;
+    }
+    main>:nth-child(4)>div>:nth-child(3) {
+        margin-top: 20%;
+    }
+    section {
+        width: 50%;
+        margin: auto;
+        margin-top: 7%;
+    }
+    section>div>p:hover {
+        color: hsl(0, 94%, 66%);
+    }
+    section>div>p::after {
+        float: right;
+        content: url('kit/images/icon-arrow.svg');
+    }
+    footer {
+        margin-top: 3%;
+    }
+    footer>:nth-child(1) {
+        background-color: hsl(231, 69%, 60%);
+        padding: 30px 30% 30px 30%;
+        text-align: center;
+    }
+    footer h1 {
+        color: white;
+    }
+    footer p {
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-size: small;
+        word-spacing: 3px;
+    }
+    footer input {
+        padding: 8px;
+        border-radius: 5px;
+        outline: none;
+        font-size: small; 
+        border: none;
+        width: 250px;
+    }
+    footer>:nth-child(2) {
+        background-color: hsl(229, 31%, 21%);
+        display: flex;
+        align-items: center;
+        padding: 10px 0px 10px 0px;
+    }
+    footer>:nth-child(2)>* {
+        display: flex;
+        align-items: center;
+        width: 50%;
+    }
+    footer>:nth-child(2)>:nth-child(1) {
+        justify-content: center;
+        gap: 20px;
+    }
+    footer>:nth-child(2)>:nth-child(1) a {
+        color: white;
+        text-transform: uppercase;
+        font-size: small;
+    }
+    footer>:nth-child(2)>:nth-child(2) {
+        justify-content: center;
+        gap: 50px;
+    }
+    footer button:hover {
+        background-color: white;
+        outline: 2px solid hsl(0, 94%, 66%);
+        color: hsl(0, 94%, 66%);
+    }
+}

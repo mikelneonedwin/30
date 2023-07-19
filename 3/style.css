@@ -1,0 +1,59 @@
+@import '../0.css';
+@import '../google-font.css';
+@import 'big.css';
+@import 'small.css';
+* {
+    font-family: circula;
+}
+a {
+    text-decoration: none;
+}
+.red {
+    padding: 7px 17px 7px 17px;
+    background-color: hsl(0, 94%, 66%);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+.blue {
+    padding: 7px 17px 7px 17px;
+    background-color: hsl(231, 69%, 60%);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+body {
+    font-size: 18px;
+}
+
+section>h1 {
+    color: hsl(229, 31%, 21%);
+}
+section>p {
+    color: hsl(229, 8%, 60%);
+}
+section>h1, section>p {
+    text-align: center;
+}
+section>div {
+    margin-top: 5%;
+    color: hsl(229, 31%, 21%);
+}
+section>div>p:first-child {
+    border-top: 1px solid #ddd;
+}
+section>div>p {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0px 15px 0px;
+}
+section>a {
+    width: 15%;
+    display: block;
+    text-align: center;
+    overflow: visible;
+    margin: auto;
+    padding: 10px 15px 10px 15px !important;
+    margin-top: 7%;
+}
