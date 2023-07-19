@@ -224,7 +224,7 @@
         margin-top: 7%;
     }
     section>div>p:hover {
-        color: hsl(0, 94%, 66%);
+        color: hsl(0, 29%, 41%);
     }
     section>div>p::after {
         float: right;
@@ -232,6 +232,7 @@
     }
     footer {
         margin-top: 3%;
+        color: white;
     }
     footer>:nth-child(1) {
         background-color: hsl(231, 69%, 60%);
