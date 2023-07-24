@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Easybank Landing Page</title>
+        <link rel="icon" href="kit/images/favicon-32x32.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <script src="../js/tailwindcss.js"></script>
+        <script src="../js/tailwind.config.js"></script>
+        <style type="text/tailwindcss">
+            body {
+                background-color: hsl(220, 16%, 96%);
+                font-size: 18px;
+                color: hsl(233, 8%, 42%);
+            }
+            .dark-blue {
+                color: hsl(233, 26%, 24%)
+            }
+            .grad {
+                background-image: linear-gradient(to right, #2ad35e, #2db4d1);
+                @apply text-white pt-1.5 pb-2 px-4 rounded-full text-base;
+            }
+            .wl {
+                background-color: hsl(0, 0%, 98%);
+            }
+            .this-grid>* {
+                @apply flex flex-col items-start gap-6 sm:items-center sm:justify-center;
+            }
+            .this-grid h3 {
+                @apply text-xl;
+                color: hsl(233, 26%, 24%);
+            }
+            .this-grid p {
+                @apply sm:text-center;
+            }
+            .this-grid-2>*  {
+                @apply h-80 sm:h-96 grid grid-rows-2 bg-white rounded-lg;
+            }
+            .this-grid-2>div>div {
+                @apply w-full h-full overflow-ellipsis overflow-hidden;
+            }
+            .this-grid-2>div>:nth-child(odd){
+                @apply rounded-t-lg;
+            }
+            .this-grid-2>div>:nth-child(even) {
+                @apply p-6 flex flex-col gap-2 text-base w-full h-full leading-5;
+            }
+            .this-grid-2 span {
+                @apply text-sm;
+            }
+            .this-grid-2 h3 {
+                color: hsl(233, 26%, 24%);
+                @apply font-semibold;
+            }
+            header a[href="#"]{
+                @apply p-4 pb-3 border-b-4;
+                border-color: white;
+            }
+            header a[href="#"]:hover {
+                border-color: #2ad35e;
+            }
+            main>:nth-child(3) h3:hover {
+                color: #2ad35e;
+                cursor: pointer;
+            }
+            ul + ul li:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="bg-white flex items-center justify-evenly sm:p-5">
+            <div class="flex lg:justify-center w-1/3 sm:w-1/2"><img src="kit/images/logo.svg"></div>
+            <div class="sm:hidden flex justify-evenly w-1/3">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="sm:hidden text-center w-1/3"><button class="grad">Request Invite</button></div>
+            <div class="sm:w-1/2 lg:hidden"><img onclick="m()" class="float-right" src="kit/images/icon-hamburger.svg"/></div>
+        </header>
+        <main>
+            <div class="sm:hidden wl bg-no-repeat" style="background-image: url('kit/images/bg-intro-desktop.svg'); background-size: 50%; background-position-x: 110%; background-position-y: center;">
+                <div class="bg-no-repeat grid grid-cols-2 px-40 py-20"  style="background-image: url('kit/images/image-mockups.png'); background-size: 40%; background-position-y: center; background-position-x: 110%;">
+                    <div class="flex gap-6 flex-col items-start justify-items-start bg-no-repeat">
+                        <h1 class="text-3xl dark-blue">Next generation digital banking</h1>
+                        <p>Take your financial life online. Your Easybank account will be a one-stop-shop for spending, saving, budgeting, investing and much more.</p>
+                        <button class="grad">Request Invite</button>
+                    </div>
+                </div>
+            </div>
+            <div class="wl lg:hidden flex flex-col gap-4 bg-top bg-no-repeat bg-cover" style="background-image: url('kit/images/bg-intro-mobile.svg'); background-size: 100% 75%;">
+                <div class="bg-no-repeat bg-center h-96 p-7" style="background-size: 100%; background-image: url('kit/images/image-mockups.png');">
+                    <div id="m" class="w-10/12 bg-white rounded-xl flex flex-col items-center justify-evenly text-2xl h-full m-auto dark-blue shadow-slate-950 shadow-2xl hidden">
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Careers</a>
+                    </div>
+                </div>
+                <div class="px-6 flex flex-col gap-6 items-center py-6 justify-center">
+                    <h1 class="text-3xl text-center dark-blue">Next generation digital banking</h1>
+                    <p class="text-center">Take your financial life online. Your Easybank account will be a one-stop-shop for spending, saving, budgeting, investing and much more.</p>
+                    <button class="grad">Request Invite</button>
+                </div>
+            </div>
+            <div class="flex flex-col gap-10 px-40 py-20 sm:px-14">
+                <div class="flex flex-col gap-4 sm:text-center">
+                    <h1 class="text-2xl dark-blue sm:text-3xl">Why choose Easybank?</h1>
+                    <p>We leverage Open Banking to turn your bank account into your financial hub. <br>Control your financies like never before.</p>
+                </div>
+                <div>
+                    <div class="grid grid-cols-4 sm:grid-cols-1 sm:grid-rows-4 gap-6 this-grid">
+                        <div>
+                            <img src="kit/images/icon-online.svg">
+                            <h3>Online Banking</h3>
+                            <p>Our modern web and mobile applications allow you to keep track of your financies wherever you are in the world.</p>
+                        </div>
+                        <div>
+                            <img src="kit/images/icon-budgeting.svg">
+                            <h3>Simple Budgeting</h3>
+                            <p>See exactly where your money goes each month. Receive notifications when you're close to hitting your limits.</p>
+                        </div>
+                        <div>
+                            <img src="kit/images/icon-onboarding.svg">
+                            <h3>Fast Onboarding</h3>
+                            <p>We don't do branches. Open your account in minutes online and start taking control of your finances right away.</p>
+                        </div>
+                        <div>
+                            <img src="kit/images/icon-api.svg">
+                            <h3>Open API</h3>
+                            <p>Manage your savings, investments, pension and much more from one  account. Tracking your money has never been easier</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wl px-40 py-20 sm:px-16 flex flex-col gap-4 items-start">
+                <h1 class="dark-blue text-2xl sm:text-center sm:w-full sm:text-3xl">Latest Articles</h1>
+                <div class="this-grid-2 grid-cols-4 grid gap-6 sm:grid-cols-1 sm:grid-rows-4">
+                    <div>
+                        <div style="background-image: url('kit/images/image-currency.jpg');"></div>
+                        <div>
+                            <span>By Claire Robinson</span>
+                            <h3>Receice money in any currency with no fees</h3>
+                            <p>The world is getting smaller and we're becoming more mobile. So why should you be forced to only receive money in a single...</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="background-image: url('kit/images/image-restaurant.jpg');"></div>
+                        <div>
+                            <span>By Wilson Hutton</span>
+                            <h3>Treat yourself without worrying about money</h3>
+                            <p>Our simple budgeting feature allows you to seperate out your spending and set realistic limits each month. That means you...</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="background-image: url('kit/images/image-plane.jpg');"></div>
+                        <div>
+                            <span>By Wilson Hutton</span>
+                            <h3>Take your Easybank card wherever you go</h3>
+                            <p>We want you to enjoy your travels. This is why we don't charge any fees on purchases while you're abroad. We'll even show you...</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="background-image: url('kit/images/image-confetti.jpg');"></div>
+                        <div>
+                            <span>By Claire Robinson</span>
+                            <h3>Our invite-only Beta accounts are now live!</h3>
+                            <p>After a lot of hard work by the whole team, we're excited to launch our closed beta. It's easy to request an invite through the site ...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer style="background-color: hsl(233, 26%, 24%);" class="flex items-center p-12 sm:flex-col sm:items-center sm:gap-6">
+            <div class="w-1/2 flex items-start justify-evenly gap-4 sm:flex-col sm:justify-center sm:items-center">
+                <ul class="flex flex-col gap-14">
+                    <li class="flex items-center justify-center"><img src="kit/images/logo.svg"></li>
+                    <li class="flex items-center sm:gap-4 justify-evenly">
+                        <img src="kit/images/icon-facebook.svg">
+                        <img src="kit/images/icon-youtube.svg">
+                        <img src="kit/images/icon-twitter.svg">
+                        <img src="kit/images/icon-pinterest.svg">
+                        <img src="kit/images/icon-instagram.svg">
+                    </li>
+                </ul>
+                <ul class="text-base flex flex-col gap-2.5 text-white sm:text-center">
+                    <li>About Us</li>
+                    <li>Contact</li>
+                    <li>Blog</li>
+                </ul>
+                <ul class="text-base flex flex-col gap-2.5 text-white sm:text-center">
+                    <li>Careers</li>
+                    <li>Support</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+            <div class="w-1/2 flex flex-col justify-end items-end gap-8 sm:items-center sm:justify-center sm:w-full">
+                <div><button class="grad">Request Invite</button></div>
+                <site class="text-gray-500 text-base">© Easybank. All Rights Reserved</site>
+            </div>
+        </footer>
+        <script>
+            function m(){
+                const mm = document.getElementById("m");
+                const img = document.querySelector("[onclick=\"m()\"]");
+                mm.classList.toggle("hidden");
+                img.src = (!Array.from(mm.classList).includes("hidden") ? 'kit/images/icon-close.svg' : 'kit/images/icon-hamburger.svg');
+            }
+        </script>
+    </body>
+</html>
