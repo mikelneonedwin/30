@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Intro section with dropdown navigation</title>
+        <link rel="icon" href="kit/images/favicon-32x32.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <script src="../js/tailwindcss.js"></script>
+        <script src="../js/tailwind.config.js"></script>
+        <link rel="stylesheet" href="../google-font.css">
+        <style>body{font-family: circula;}</style>
+        <style type="text/tailwindcss">
+            body {
+                background-color: hsl(0, 0%, 98%);
+                color: hsl(0, 0%, 41%);
+            }
+            header img~* {
+                @apply -translate-y-1 sm:hidden opacity-60 hover:opacity-100 hover:text-gray-600;
+            }
+            .state {
+                @apply opacity-100 text-gray-600;
+            }
+            header button {
+                @apply hover:text-black sm:hidden;
+            }
+            section ul {
+                @apply pl-4 w-full flex-col gap-4 sm:hidden leading-loose;
+            }
+            section ul li {
+                @apply flex items-center gap-2;
+            }
+            @media only screen and (min-width: 1024px){
+                section>:not(div:nth-child(2)){
+                    display: none;
+                }
+                section>:nth-child(2)>:not(ul) {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="flex items-center p-4">
+            <div class="w-1/2 flex items-start gap-8">
+                <img src="kit/images/logo.svg">
+                <span class="lg:flex hover:cursor-pointer justify-center items-center gap-2">Features <img src="kit/images/icon-arrow-down.svg"/></span>
+                <span class="lg:flex hover:cursor-pointer justify-center items-center gap-2">Company <img src="kit/images/icon-arrow-down.svg"/></span>
+                <a href="#" class="">Careers</a>
+                <a href="#" class="">About</a>
+            </div>
+            <div class="flex w-1/2 items-center gap-4 justify-end">
+                <button>Login</button>
+                <button class="rounded-lg border-solid border-[1px] hover:border-black border-gray-500 py-1 px-2">Register</button>
+                <img class="lg:hidden" onclick="sct()" src="kit/images/icon-menu.svg">
+            </div>
+        </header>
+        <main class="flex sm:flex-col-reverse lg:w-4/5 lg:m-auto lg:mt-4">
+            <div class="flex sm:mt-4 items-start flex-col gap-6 lg:gap-8 sm:px-4">
+                <h1 class="text-black sm:text-center sm:w-full lg:text-8xl sm:text-4xl font-bold">Make remote work</h1>
+                <p class="text-xl sm:text-center sm:w-full">Get your team in sync, no matter your location. <br>Streamline processes, create team rituals, and watch productivity soar.</p>
+                <div class="sm:text-center sm:w-full">
+                    <button class="rounded-2xl px-8 bg-black text-white font-semibold py-2.5 focus:bg-white focus:text-black hover:bg-white hover:text-black hover:border-solid focus:border-solid border-[1px] border-white hover:border-black focus:border-black">Learn More</button>
+                </div>
+                <div class="flex items-center lg:gap-16 sm:gap-5 sm:justify-evenly w-full">
+                    <img src="kit/images/client-databiz.svg">
+                    <img src="kit/images/client-audiophile.svg">
+                    <img src="kit/images/client-meet.svg">
+                    <img src="kit/images/client-maker.svg">
+                </div>
+            </div>
+            <div>
+                <img class="lg:hidden" src="kit/images/image-hero-mobile.png">
+                <img class="sm:hidden aspect-square h-[30rem]" src="kit/images/image-hero-desktop.png">
+            </div>
+        </main>
+        <section class="sm:hidden sm:w-1/2 sm:fixed sm:top-0 sm:right-0 sm:bg-white sm:h-full sm:p-4 lg:contents">
+            <div class="flex items-end justify-end">
+                <img onclick="sct()" src="kit/images/icon-close-menu.svg">
+            </div>
+            <div class="flex flex-col gap-4">
+                <span class="flex items-center justify-start gap-2">Features <img src="kit/images/icon-arrow-down.svg"></span>
+                <ul>
+                    <li><img src="kit/images/icon-todo.svg"/> Todo List</li>
+                    <li><img src="kit/images/icon-calendar.svg"> Calendar</li>
+                    <li><img src="kit/images/icon-reminders.svg"/> Reminders</li>
+                    <li><img src="kit/images/icon-planning.svg"/> Planning</li>
+                </ul>
+                <span class="flex items-center justify-start gap-2">Company <img src="kit/images/icon-arrow-down.svg"/></span>
+                <ul>
+                    <li>History</li>
+                    <li>Our Team</li>
+                    <li>Blog</li>
+                </ul>
+                <a href="#" class="">Careers</a>
+                <a href="#" class="">About</a>         
+            </div>
+            <div class="text-center flex flex-col gap-4 mt-4">
+                <button>Login</button>
+                <button class="rounded-lg border-solid border-[2px] hover:border-black border-gray-500 py-1 px-2">Register</button>
+            </div>
+        </section>
+        <script>
+            const wide = innerWidth >= 1024;
+            const section = document.querySelector("section");
+            function sct(){ section.classList.toggle("sm:hidden"); }
+            const span = Array.from(document.querySelectorAll("span"));
+            const ul = document.querySelectorAll("ul");
+            span.forEach((a,b) => {
+                if((b == 0 || b == 1) && wide){
+                    const myul = ul[b];
+                    myul.classList.add("hidden");
+                    myul.classList.add("shadow-2xl", "leading-loose", "absolute", "bg-white", "p-4", "inline-block", "w-48");
+                    a.onmouseover = (e) => {
+                        myul.style.left = a.getBoundingClientRect().left + "px";
+                        myul.style.top = a.getBoundingClientRect().top + 30 + "px";
+                    }
+                    a.onclick = () => {
+                        if(Array.from(a.classList).includes("state")) a.querySelector("img").src = 'kit/images/icon-arrow-down.svg';
+                        else a.querySelector("img").src = 'kit/images/icon-arrow-up.svg';
+                        a.classList.toggle("state");
+                        myul.classList.toggle("hidden");
+                    }
+                }
+                if(b == 2 || b == 3){
+                    const myul = ul[b - 2];
+                    a.onclick = () => {
+                        myul.classList.toggle("block");
+                        a.querySelector("img").src = 'kit/images/icon-arrow-' + (myul.className == "block" ? 'up' : 'down') + '.svg';                        
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
