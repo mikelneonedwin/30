@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us" class="h-full">
+    <head>
+        <title>Interactive Rating Component</title>
+        <link rel="icon" href="kit/images/favicon-32x32.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <script src="../js/tailwindcss.js"></script>
+        <script src="../js/tailwind.config.js"></script>
+        <link rel="stylesheet" href="../google-font.css">
+        <style type="text/tailwindcss">
+            * {font-family: circula;}
+            div>button{
+                background-color: rgb(26, 33, 44);
+                @apply bg-gray-900 hover:bg-orange-500 focus:text-white hover:text-white focus:bg-gray-500 p-4 aspect-square w-6 h-6 flex items-center justify-center rounded-full cursor-pointer;
+                color: hsl(216, 12%, 54%);
+            }
+        </style>
+    </head>
+    <body style="background-color: hsl(216, 12%, 8%);" class="flex items-center justify-center h-full">
+        <main class="flex lg:w-[30%] sm:w-[90%] rounded-3xl p-8 flex-col items-start gap-4" style="background-color: hsl(213, 19%, 18%);">
+            <img src="kit/images/icon-star.svg">
+            <h1 class="text-xl font-bold text-white" style="letter-spacing: 1px;">How did we do?</h1>
+            <p style="color: hsl(216, 12%, 54%)">Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
+            <div class="flex justify-evenly w-full">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <button class="w-full bg-orange-500 hover:text-orange-500 hover:bg-white text-white py-2 rounded-full" style="letter-spacing: 1px;">SUBMIT</button>
+        </main>
+        <main class="w-30% hidden lg:w-[30%] sm:w-[90%] rounded-3xl p-8 flex-col items-center gap-4" style="background-color: hsl(213, 19%, 18%);">
+            <img src="kit/images/illustration-thank-you.svg"/>
+            <span class="bg-gray-800 p-2 text-orange-500">You selected <i style="font-style: normal">4</i> out of 5</span>
+            <h1 class="text-2xl text-white">Thank you!</h1>
+            <p class="text-center" style="color: hsl(216, 12%, 54%)">We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in touch!</p>
+        </main>
+        <script>
+            const btn = Array.from(document.querySelectorAll("button"));
+            const main = document.querySelectorAll("main");
+            btn.forEach(a => {
+                a.addEventListener("click", (e) => {
+                    main[0].classList.remove("flex");
+                    main[0].classList.add("hidden");
+                    main[1].classList.remove("hidden");
+                    main[1].classList.add("flex");
+                    document.querySelector("i").innerText = e.target.innerText;
+                })
+            })
+        </script>
+    </body>
+</html>
