@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us" class="lg:h-full">
+    <head>
+        <title>Newsletter Sign Up</title>
+        <link rel="icon" href="kit/images/favicon-32x32.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <script src="../js/tailwindcss.js"></script>
+        <script src="../js/tailwind.config.js"></script>
+        <style>
+            @font-face {
+                font-family: Bold;
+                src: url('kit/fonts/Roboto-Bold.ttf');
+            }
+            @font-face {
+                font-family: 'Regular';
+                src: url('kit/fonts/Roboto-Regular.ttf');
+            }
+        </style>
+        <style type="text/tailwindcss">
+            @media only screen and (min-width: 1024px){
+                body {
+                    background-color: hsl(235, 18%, 26%);
+                }
+            }
+            * {
+                font-family: Regular;
+            }
+            body {
+                font-size: 16px;
+                color: hsl(234, 29%, 20%);
+            }
+            ul {
+                list-style-image: url('kit/images/icon-list.svg');
+                list-style-position: inside;
+            }
+            input {
+                color: hsl(235, 18%, 26%);
+            }
+            input:focus {
+                outline: hsl(235, 18%, 26%) solid 1px;
+            }
+            button:focus, button:hover {
+                background-image: linear-gradient(to right, #ff5379, #ff6635);
+            }
+        </style>
+    </head>
+    <body class="lg:flex lg:h-full lg:items-center lg:justify-center">
+        <main class="lg:w-3/5 lg:bg-white lg:p-4 lg:rounded-xl lg:flex sm:grid sm:grid-rows-2 gap-4">
+            <div class="lg:hidden rounded-b-3xl bg-no-repeat bg-cover" style="background-image: url('kit/images/illustration-sign-up-mobile.svg');"></div>
+            <div class="flex items-center justify-center p-4">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-4xl font-bold" style="font-family:Bold; color: hsl(234, 29%, 20%)">Stay Updated!</h1>
+                    <p>Join 60,000+ product managers receiving monthly updates on</p>
+                    <ul class="lg:leading-8 sm:leading-10">
+                        <li>Product discovery and building what matters</li>
+                        <li>Measuring to ensure updates are a success</li>
+                        <li>And much more!</li>
+                    </ul>
+                    <div class="flex flex-col gap-4">
+                        <label class="text-xs font-bold w-full">Email address <b class="float-right hidden" style="color:hsl(4, 100%, 67%)">Valid email required</b></label>
+                        <input class="px-4 py-2.5 border-[1px] rounded-lg" type="email" placeholder="email@company.com">
+                        <button onclick="val()" class="font-semibold tracking-wide text-white py-3 rounded-lg" style="background-color: hsl(234, 29%, 20%);">Subscribe to monthly newsletter</button>
+                    </div>
+                </div>
+            </div>
+            <div class="sm:hidden">
+                <img src="kit/images/illustration-sign-up-desktop.svg">
+            </div>
+        </main>
+        <main class="xl:hidden lg:bg-white lg:p-8 sm:px-4 lg:rounded-xl flex flex-col items-start lg:gap-4 sm:gap-8 sm:-translate-y-20 lg:w-1/4">
+            <img src="kit/images/icon-success.svg">
+            <h1 class="text-4xl font-bold" style="font-family: Bold; color: hsl(234, 29%, 20%)">Thanks for subscribing!</h1>
+            <p>A confirmation email has been sent to <b></b>. Please open it and click the button inside to confirm your subscription</p>
+            <button onclick="las()" class="font-semibold tracking-wide text-white py-3 rounded-lg w-full" style="background-color: hsl(234, 29%, 20%);">Dismiss Message</button>
+        </main>
+        <script>
+            const main = document.querySelectorAll("main");
+            const input = document.querySelector("input");
+            const b = document.querySelectorAll("b");
+            function val(){
+                const email = input.value;
+                const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                if(!regex.test(email)){
+                    b[0].classList.toggle("hidden");
+                    input.style = "background-color: lightsalmon";
+                    input.onclick = () => {
+                        b[0].classList.toggle("hidden");
+                        input.style = '';
+                    }
+                    return false;
+                }
+                document.documentElement.classList.add("h-full");
+                document.body.classList.add(...("flex h-full items-center justify-center".split(' ')))
+                main[0].classList.add("xl:hidden");
+                main[1].classList.remove("xl:hidden");
+                b[1].innerText = email;
+            };
+            function las() { 
+                input.value = "";
+                location.reload();
+            };
+        </script>
+    </body>
+</html>
