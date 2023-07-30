@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Instagram</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <script src="../js/tailwindcss.js"></script>
+        <script src="../js/tailwind.config.js"></script>
+        <link rel="preload" href="../fonts/icons.woff2" type="font/woff2" as="font">
+        <link rel="preload" href="../fonts/symbols.woff2" type="font/woff2" as="font">
+        <link rel="stylesheet" href="../google-font.css">
+        <link rel="icon" href="favicon.ico">
+        <script src="../js/babel.min.js"></script>
+        <script src="../js/react.production.min.js"></script>
+        <script src="../js/react-dom.production.min.js"></script>
+        <style type="text/tailwindcss">
+            body {
+                font-size: 18px;
+                font-family: circula;
+            }
+            #scroll, #scroll2 {
+                scrollbar-width: none;
+            }
+            #scroll::-webkit-scrollbar, #scroll2::-webkit-scrollbar {
+                width: 0px;
+            }
+            #scroll>div {
+                @apply w-32 h-44 bg-black rounded-md inline-flex bg-cover bg-center bg-no-repeat mr-1 text-white align-top flex-col items-start;
+            }
+            #scroll2>div {
+                @apply bg-inherit px-4 w-36 h-[11.5rem] rounded-md inline-flex mr-2 items-center pt-2 flex-col border-solid border border-gray-200 gap-1;
+            }
+            #scroll2 button {
+                @apply bg-[#0077ff] rounded-sm w-[90%] text-white text-base tracking-wide;
+            }
+            #scroll2 img {
+                @apply rounded-full aspect-square h-20;
+            }
+            #scroll2 span+span {
+                @apply text-xs opacity-50;
+            }
+            #scroll2>div>div {
+                @apply grid grid-rows-2;
+            }
+            #scroll>div>div {
+                @apply px-1 pb-2 rounded-md mt-auto grid grid-rows-1 items-start leading-6 w-full overflow-ellipsis overflow-hidden;
+            }
+            #scroll>div>div>:last-child {
+                @apply flex items-center justify-start;
+            }
+            #scroll>div>div>:first-child {
+                @apply pl-1 text-left w-full overflow-ellipsis overflow-hidden;
+            }
+            #scroll b {
+                @apply font-normal text-[24px];
+                font-family: 'Material Icons Outlined';
+            }
+            #scroll b::before {
+                content: "play_arrow";
+            }
+        </style>
+    </head>
+    <body>
+        <header class="p-2 bg-white fixed z-10 top-0 left-0 right-0 flex items-center border-b border-solid border-gray-300">
+            <div class="w-1/2 flex items-center">
+                <img class="h-11" src="svg/Instagram_logo.svg">
+                <img class="h-2.5" src="svg/arrow.svg">
+            </div>
+            <div class="flex items-center justify-end gap-4 w-1/2">
+                <span class="symbol text-3xl">favorite</span>
+                <img class="h-7" src="svg/message.svg">
+            </div>
+        </header>
+        <main class="my-20 flex flex-col gap-4">
+            <div class="flex flex-col gap-3 px-2">
+                <div class="flex gap-4 items-end">
+                    <div class="p-1 h-12 aspect-square rounded-full" style="background-image: linear-gradient(to top right, #FC8D1A, #C635E0);">
+                        <img class="h-10 aspect-square rounded-full" src="deluxe website.jpg">
+                    </div>
+                    <div class="flex flex-col w-full items-start">
+                        <b>deluxewebsite</b>
+                        <span>USA</span>
+                    </div>
+                    <span class="symbol text-3xl">more_vert</span>
+                </div>
+                <div class="bg-[#E9F6EF] flex items-center justify-center px-8 py-14">
+                    <img src="Untitled.jpg">
+                </div>
+                <div class="flex items-center">
+                    <div class="w-1/2 flex items-center gap-3">
+                        <span class="icon text-red-500 text-4xl">favorite</span>
+                        <img class="h-7" src="svg/comment.svg">
+                        <img class="h-7" src="svg/share.svg">
+                    </div>
+                    <div class="w-1/2 flex items-center justify-end">
+                        <img class="h-7" src="svg/bookmark.svg">
+                    </div>
+                </div>
+                <div class="text-gray-700">105 likes <br><b class="font-medium text-gray-900">deluxewebsite</b> Awesome website design concept <br>:<span class="opacity-50">··· more</span></div>
+                <div>
+                    <div class="flex gap-3">
+                        <img class="h-10 w-10 aspect-square rounded-full" src="deluxe website.jpg">
+                        <input class="rounded-lg w-full px-2" placeholder="Add a comment···">
+                    </div>
+                    <span class="opacity-50">5 hours ago</span>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 px-3">
+                <div class="flex items-center">
+                    <div class="w-1/2">Suggested Reels</div>
+                    <div class="w-1/2 flex items-center justify-end gap-2">
+                        <img class="h-3" src="svg/play-svgrepo-com.svg">
+                        <span>Watch all</span>
+                    </div>
+                </div>
+                <div id="scroll" class="whitespace-nowrap text-center overflow-x-auto"></div>
+            </div>
+            <div class="flex flex-col gap-3 px-2">
+                <div class="flex gap-4 items-end">
+                    <div class="p-1 h-12 aspect-square rounded-full">
+                        <img class="h-10 aspect-square rounded-full" src="people/326105027_220394383784329_730510253235932773_n.jpg">
+                    </div>
+                    <div class="flex flex-col w-full items-start">
+                        <b>Muna Joseph</b>
+                        <span>Key Glock • Toolie</span>
+                    </div>
+                    <span class="symbol text-3xl">more_vert</span>
+                </div>
+                <div class="flex items-center justify-center">
+                    <img src="IMG-20230729-WA0025.jpg">
+                </div>
+                <div class="flex items-center">
+                    <div class="w-1/2 flex items-center gap-3">
+                        <span class="icon text-red-500 text-4xl">favorite</span>
+                        <img class="h-7" src="svg/comment.svg">
+                        <img class="h-7" src="svg/share.svg">
+                    </div>
+                    <div class="w-1/2 flex items-center justify-end">
+                        <img class="h-7" src="svg/bookmark.svg">
+                    </div>
+                </div>
+                <div class="text-gray-700">187 likes <br><b class="font-medium text-gray-900">munajoseph</b> ordering? <br>:<span class="opacity-50">··· more</span></div>
+                <div>
+                    <div class="flex gap-3">
+                        <img class="h-10 w-10 aspect-square rounded-full" src="deluxe website.jpg">
+                        <input class="rounded-lg w-full px-2" placeholder="Add a comment···">
+                    </div>
+                    <span class="opacity-50">2 hours ago</span>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 px-3">
+                <div class="flex items-center">
+                    <div class="w-1/2">Suggested for you</div>
+                    <div class="w-1/2 flex items-center justify-end gap-2">
+                        <a href="#">See all</a>
+                    </div>
+                </div>
+                <div id="scroll2" class="whitespace-nowrap text-center overflow-x-auto"></div>
+            </div>
+            <div class="flex flex-col gap-3 px-2">
+                <div class="flex gap-4 items-end">
+                    <div class="p-1 h-12 aspect-square rounded-full">
+                        <img class="h-10 aspect-square rounded-full" src="people/342327451_248167974451842_4092122235890212928_n.jpg">
+                    </div>
+                    <div class="flex flex-col w-full items-start">
+                        <b>Prince Joseph</b>
+                        <span>Nathaniel Bassey • Adonai</span>
+                    </div>
+                    <span class="symbol text-3xl">more_vert</span>
+                </div>
+                <div class="flex items-center justify-center">
+                    <img src="bg/Why-Is-the-Lord-Jesus-Called-Christ-1.jpg">
+                </div>
+                <div class="flex items-center">
+                    <div class="w-1/2 flex items-center gap-3">
+                        <span class="icon text-red-500 text-4xl">favorite</span>
+                        <img class="h-7" src="svg/comment.svg">
+                        <img class="h-7" src="svg/share.svg">
+                    </div>
+                    <div class="w-1/2 flex items-center justify-end">
+                        <img class="h-7" src="svg/bookmark.svg">
+                    </div>
+                </div>
+                <div class="text-gray-700">708 likes <br><b class="font-medium text-gray-900">_prince_joseph</b> Happy sunday fam<br>:<span class="opacity-50">··· more</span></div>
+                <div>
+                    <div class="flex gap-3">
+                        <img class="h-10 w-10 aspect-square rounded-full" src="deluxe website.jpg">
+                        <input class="rounded-lg w-full px-2" placeholder="Add a comment···">
+                    </div>
+                    <span class="opacity-50">12 hours ago</span>
+                </div>
+            </div>
+        </main>
+        <footer class="fixed z-10 bg-white left-0 right-0 bottom-0 py-4 flex items-center justify-evenly">
+            <img class="h-7" src="svg/home.svg">
+            <img class="h-7" src="svg/search.svg">
+            <img class="h-7" src="svg/create.svg">
+            <img class="h-7" src="svg/reels.svg">
+            <img class="h-7 rounded-full" src="deluxe website.jpg">
+        </footer>
+        <script type="application/json">
+            [
+                {
+                    "img": "243020517_1265682487554615_6224558210029808071_n.jpg",
+                    "name": "ArtofWar",
+                    "txt": "Suggested for you"
+                },
+                {
+                    "img": "326105027_220394383784329_730510253235932773_n.jpg",
+                    "name": "Muna Joseph",
+                    "txt": "Suggested for you"
+                },
+                {
+                    "img": "358033907_295246366216594_5258466291427573890_n.jpg",
+                    "name": "She's Precious",
+                    "txt": "Followed by _joshn_12"
+                },
+                {
+                    "img": "362632935_601346858822100_3446293621689133353_n.jpg",
+                    "name": "farriz_king",
+                    "txt": "Follows you"
+                }, 
+                {
+                    "img": "292291800_412264427617431_3883529173763229247_n.jpg",
+                    "name": "spidy30",
+                    "txt": "Suggested for you"
+                },
+                {
+                    "img": "353485382_955407622389131_2564906597890252392_n.jpg",
+                    "name": "Ololade Scents",
+                    "txt": "Follows you"
+                },
+                {
+                    "img": "355453339_813180703334209_4904248054476485237_n.jpg",
+                    "name": "Addrro",
+                    "txt": "Suggested for you"
+                }, 
+                {
+                    "img": "359705189_1219308972800430_8613339779284856185_n.jpg",
+                    "name": "Gee Gele",
+                    "txt": "Followed by farriz_king"
+                },
+                {
+                    "img": "361246971_1031567481169743_4676466894476567759_n.jpg",
+                    "name": "Promzywild",
+                    "txt": "Suggested for you"
+                },
+                {
+                    "img": "358990471_1959327547762820_4733411079070548055_n.jpg",
+                    "name": "mikelneonedwin",
+                    "txt": "Suggested for you"
+                }
+            ]
+        </script>
+        <script type="application/json" id="scroll-json">
+            [
+                {
+                    "img": "bg/1682599656324.jpg",
+                    "name": "1cloutdipson",
+                    "views": "819k"
+                },
+                {
+                    "img": "bg/sam-moghadam-khamseh-xy0dk2PQsOQ-unsplash.jpg",
+                    "name": "alexa12_",
+                    "views": "128k"
+                },
+                {
+                    "img": "bg/DALL.png",
+                    "name": "judedrizzy_official",
+                    "views": "115k"
+                },
+                {
+                    "img": "bg/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg",
+                    "name": "4.x.2x1_",
+                    "views": "377k"
+                },
+                {
+                    "img": "bg/Untitled.jpg",
+                    "name": "RDLA",
+                    "views": "17M"
+                },
+                {
+                    "name": "mir_",
+                    "img": "people/350099790_725017785975117_9148767582465816084_n.jpg",
+                    "views": "1.2M"
+                },
+                {
+                    "name": "jake_12__",
+                    "views": "101k",
+                    "img": "people/358403792_662829318601729_1262136851872134747_n.jpg"
+                },
+                {
+                    "name": "farriz_king",
+                    "views": "90k",
+                    "img": "people/267151394_1771664653043235_2804042226841503213_n.jpg"
+                },
+                {
+                    "name": "spidy30",
+                    "views": "20k",
+                    "img": "people/339514956_770258814449152_798397900591522243_n.jpg"
+                },
+                {
+                    "name": "promzywild",
+                    "views": "1.7k",
+                    "img": "people/335886423_608278284650714_3148824089170925174_n.jpg"
+                },
+                {
+                    "name": "farriz_king",
+                    "views": "12k",
+                    "img": "people/311228718_1404082233334406_269825063850405623_n.jpg"
+                }
+            ]
+        </script>
+        <script type="text/babel">
+            const scroll2 = ReactDOM.createRoot(document.getElementById("scroll2"));
+            const data = JSON.parse(document.querySelector("script[type]").textContent);
+            scroll2.render(data.map((a,b) => 
+                <div key={b}>
+                    <img src={'people/' + a.img}/>
+                    <div>
+                        <span>{a.name}</span>
+                        <span>{a.txt}</span>
+                    </div>
+                    <button>{a.txt == "Follows you" ? "Follow back" : "Follow"}</button>
+                </div>
+            ))
+            const scrollx = ReactDOM.createRoot(document.getElementById("scroll"));
+            const data2 = JSON.parse(document.getElementById("scroll-json").textContent);
+            scrollx.render(data2.map((a,b) => 
+                <div style={{backgroundImage: `url('${a.img}')`}}>
+                    <div>
+                        <span>{a.name}</span>
+                        <span><b></b>{a.views}</span>
+                    </div>
+                </div>
+            ))
+        </script>
+    </body>
+</html>
