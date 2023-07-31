@@ -16,19 +16,23 @@
         <link rel="preload" href="data/stories.json" as="fetch" type="application/json">
         <link rel="preload" href="data/suggestions.json" as="fetch" type="application/json">
         <link rel="preload" href="data/users.json" as="fetch" type="application/json">
+        <link rel="preload" href="data/reels.json" as="fetch" type="application/json">
+        <link rel="preload" href="data/follows.json" as="fetch" type="application/json">
         <link rel="stylesheet" href="../google-font.css">
         <link rel="preload" href="../fonts/symbols.woff2" as="font" type="font/woff2">
-        <!-- <link rel="preload" href="../fonts/circula.ttf" as="font" type="font/ttf">
-        <link rel="preload" href="../fonts/icons.woff2" as="font" type="font/woff2">-->
+        <link rel="preload" href="../fonts/icons.woff2" as="font" type="font/woff2">
+        <link rel="preload" href="../js/babel.min.js" as="fetch" type="application/javascript">
         <script type="module">
             async function json(x){
-                return await (await fetch(x, {cache: 'force-cache'})).json()
+                return await (await fetch(x, {cache: 'force-cache'})).json();
             }
             const db = {
                 stories: await json('data/stories.json'),
                 posts: await json('data/posts.json'),
                 suggestions: await json('data/suggestions.json'),
-                users: await json('data/users.json')
+                users: await json('data/users.json'),
+                reels: await json('data/reels.json'),
+                follows: await json('data/follows.json')
             }
             const $ = (x) => document.getElementById(x) || document.querySelector(x);
             Object.assign(window, ({db, $, createRoot: ReactDOM.createRoot}));
@@ -62,8 +66,8 @@
     </head>
     <body>
         <header class="scroll lg:w-[18%] lg:bottom-0 lg:overflow-y-auto fixed bg-white left-0 flex sm:items-center lg:flex-col gap-8 sm:gap-4 sm:right-0 lg:pl-6 sm:py-2 sm:px-4 top-0">
-            <div class="lg:mt-12 sm:flex sm:items-center sm:justify-center sm:gap-2">
-                <img class="w-32 aspect-auto" src="svg/Instagram_logo.svg">
+            <div class="lg:mt-12 sm:flex sm:items-center sm:w-1/2 sm:justify-center sm:gap-2">
+                <img class="w-32 sm:w-full aspect-auto" src="svg/Instagram_logo.svg">
                 <img class="lg:hidden" src="svg/arrow.svg">
             </div>
             <div class="sm:fixed sm:bottom-0 sm:left-0 sm:right-0 flex gap-8 lg:flex-col sm:justify-evenly sm:px-8 sm:py-4 sm:bg-white" id="menu">
@@ -85,16 +89,13 @@
                     @apply sm:hidden;
                 }
             </style>
-            <div class="lg:hidden flex items-center gap-2 w-96">
-                <div class="flex items-center gap-4 w-full px-4 py-2 rounded-md bg-[#EFEFEF]">
-                    <img src="svg/search-input.svg">
-                    <input class="focus:outline-none bg-inherit" type="search" placeholder="Search">
-                </div>
-                <img class="lg:hidden" src="svg/notifications.svg">
+            <div class="lg:hidden justify-end flex items-center gap-2 w-1/2">
+                <img src="svg/notifications.svg">
+                <img src="svg/message.svg">
             </div>
         </header>
         <main class="sm:my-20 lg:w-[64%] lg:pr-12 lg:mx-auto px-2">
-            <section id="stories" class="whitespace-nowrap scroll w-full overflow-x-auto px-2 lg:mt-8"></section>
+            <section id="stories" class="whitespace-nowrap scroll w-full overflow-x-auto px-2 lg:pipx-4 lg:mt-8"></section>
             <script type="text/babel">
                 (() => {
                     const stories = createRoot($('stories'));
@@ -109,45 +110,196 @@
                 })() 
             </script>
             <section id="posts" class="mt-4 lg:px-40 gap-4 flex flex-col"></section>
-            <!-- <div class="h-"> -->
             <script type="text/babel">
                 (() => {
                     const posts = createRoot($('posts'));
-                    posts.render(db.posts.map((a,b) => 
-                        <div key={b} className="flex flex-col gap-4">
-                            <div className="flex gap-2 items-center px-1">
-                                <img className="h-11 rounded-full aspect-square" src={db.users.filter(b => b.username == a.user)[0].img}/>
-                                <div className="w-full grid grid-rows-2">
-                                    <span><b className="font-medium">{a.user}</b> <i className="opacity-70" style={{fontStyle: "normal"}}>• {a.age}</i></span>
-                                    {a.info ? <span className="text-sm">{a.info}</span> : undefined}
+                    function tg(e){
+                        e.target.setAttribute("src", e.target.getAttribute("src") == "svg/like.svg" ? "svg/like-active.svg" : "svg/like.svg");
+                        db.posts[e.target.getAttribute('data-i')].likes += (e.target.getAttribute("src") == "svg/like.svg" ? -1 : 1);
+                        ax();
+                    }
+                    const info = createRoot($('info') || document.body.appendChild(document.createElement('info')));
+                    const wide = innerWidth >= 1024;
+                    function pv(x){
+                        const a = db.posts[x];
+                        function dv(j, e){
+                            a.comments[j].likes += (e.target.getAttribute("src") == "svg/small-like.svg" ? 1 : -1);
+                            e.target.setAttribute("src", e.target.getAttribute("src") == "svg/small-like.svg" ? "svg/small-like-active.svg" : "svg/small-like.svg");
+                            pv(x);
+                        }
+                        function dx(e){
+                            if(e.key == "Enter"){
+                                a.comments.push({
+                                    user: "mikelneonedwin",
+                                    content: e.target.value,
+                                    age: "now",
+                                    likes: 0
+                                })
+                                e.target.value = "";
+                                pv(x);
+                            }
+                        }
+                        function lkx(e){
+                            e.target.setAttribute("src", e.target.getAttribute("src") == "svg/like.svg" ? "svg/like-active.svg" : "svg/like.svg");
+                            a.likes += (e.target.getAttribute("src") == "svg/like.svg" ? -1 : 1);
+                            pv(x);
+                        }
+                        function bk(e){
+                            e.target.setAttribute("src", e.target.getAttribute("src") == "svg/bookmark.svg" ? "svg/bookmark-active.svg" : "svg/bookmark.svg");
+                        }
+                        info.render([
+                            <div key="1" className="fixed top-0 left-0 right-0 bottom-0 z-10 bg-black opacity-50" onClick={() => info.render('')}></div>,
+                            <div key="2" className="fixed sm:w-4/5 sm:h-4/5 sm:top-[8.33%] overflow-hidden sm:left-[9.99%] lg:w-3/4 lg:left-[12.5%] lg:h-[90%] lg:top-[5%] rounded-lg bg-white z-20 grid lg:grid-cols-2 sm:grid-rows-2">
+                                <div className="bg-no-repeat rounded-l-lg bg-center bg-cover" style={{backgroundImage: `url(\'${db.posts[x].img}\')`}}></div>
+                                <div className="flex flex-col gap-2">
+                                    <div className="border-b border-solid flex gap-2 items-center p-4">
+                                        <img className="h-11 rounded-full aspect-square" src={db.users.filter(b => b.username == a.user)[0].img}/>
+                                        <div className="w-full grid grid-rows-2">
+                                            <span><b className="font-semibold">{a.user}</b></span>
+                                            {a.info ? <span className="text-sm">{a.info}</span> : undefined}
+                                        </div>
+                                        <span className="symbol">more_horiz</span>
+                                    </div>
+                                    <div className="flex flex-col gap-2 h-80 sm:h-48 scroll overflow-y-auto">
+                                        {
+                                            a.comments && a.comments.length ?
+                                            a.comments.map((a,b) => 
+                                                <div key={b} className="flex items-start p-4 gap-2 text-sm">
+                                                    <img className="aspect-auto h-8 rounded-full" src={db.users.filter(c => c.username == a.user)[0].img}/>
+                                                    <div className="flex items-start flex-col gap-2 w-full">
+                                                        <span><b className="font-medium">{a.user}</b> <i className="opacity-80" style={{fontStyle: 'normal'}}>{a.content}</i></span>
+                                                        <span className="opacity-70 flex gap-4 items-revert">
+                                                            <span>{a.age}</span>
+                                                            <span>{a.likes} likes</span>
+                                                            <span>Reply</span>
+                                                            <span className="opacity-0 hover:opacity-100 symbol">more_horiz</span>
+                                                        </span>
+                                                    </div>
+                                                    <img onClick={(e) => dv(b, e)} src="svg/small-like.svg"/>
+                                                </div>
+                                            )
+                                            :undefined
+                                        }
+                                    </div>
+                                    <div className="flex flex-col px-4 gap-1">
+                                        <div className="w-full flex">
+                                            <div className="w-1/2 flex gap-4 items-center">
+                                                <img onClick={lkx} src="svg/like.svg"/>
+                                                <img src="svg/comment.svg"/>
+                                                <img src="svg/share.svg"/>
+                                            </div>
+                                            <div className="w-1/2 flex items-center justify-end">
+                                                <img onClick={bk} src="svg/bookmark.svg"/>
+                                            </div>
+                                        </div>
+                                        <span className="font-semibold text-sm">{a.likes} likes</span>
+                                        <span className="text-xs">{a.length}</span>
+                                    </div>
+                                    <div className="flex gap-2 my-2 px-4 items-center">
+                                        <img src="svg/face.svg"/>
+                                        <input className="w-full focus:outline-none" onKeyUp={dx} type="text" placeholder="Add a comment..."/>
+                                    </div>
                                 </div>
-                                <span class="symbol">more_horiz</span>
                             </div>
-                            <div>
-                                <img src={a.img}/>
-                            </div>
-                            <div className="flex items-center">
-                                <div className="w-1/2 flex gap-2 items-center">
-                                    <img src="svg/like.svg"/>
-                                    <img src="svg/comment.svg"/>
-                                    <img src="svg/share.svg"/>
+                        ])
+                    }
+                    function ax(){
+                        function jp(e){
+                            e.target.setAttribute("src", e.target.getAttribute("src") == "svg/bookmark.svg" ? "svg/bookmark-active.svg" : "svg/bookmark.svg");
+                        }
+                        function ac(e, b){
+                            if(!db.posts[b].comments) db.posts[b].comments = [];
+                            db.posts[b].comments.push({
+                                user: "mikelneonedwin",
+                                content: e.value,
+                                age: "now",
+                                likes: 0
+                            });
+                            ax();
+                        }
+                        function dc(e,b){
+                            if(e.key == "Enter") {
+                                ac(e.target, b);
+                                e.target.value = "";
+                            }
+                        }
+                        posts.render(db.posts.map((a,b) => 
+                            <div key={b} className="flex flex-col gap-4">
+                                <div className="flex gap-2 items-center px-1">
+                                    <img className="h-11 rounded-full aspect-square" src={db.users.filter(b => b.username == a.user)[0].img}/>
+                                    <div className="w-full grid grid-rows-2">
+                                        <span><b className="font-medium">{a.user}</b> <i className="opacity-70" style={{fontStyle: "normal"}}>• {a.age}</i></span>
+                                        {a.info ? <span className="text-sm">{a.info}</span> : undefined}
+                                    </div>
+                                    <span className="symbol">more_horiz</span>
                                 </div>
-                                <div className="w-1/2 flex items-center justify-end">
-                                    <img src="svg/bookmark.svg"/>
+                                <div>
+                                    <img src={a.img}/>
+                                </div>
+                                <div className="flex items-center">
+                                    <div className="w-1/2 flex gap-2 items-center">
+                                        <img data-i={b} onClick={tg} src="svg/like.svg"/>
+                                        <img onClick={() => pv(b)} src="svg/comment.svg"/>
+                                        <img src="svg/share.svg"/>
+                                    </div>
+                                    <div className="w-1/2 flex items-center justify-end">
+                                        <img onClick={jp} src="svg/bookmark.svg"/>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-1 text-sm">
+                                    <span className="font-semibold">{a.likes} likes</span>
+                                    <span><b className="font-semibold">{a.user}</b> {a.content.split('\n').shift()}</span>
+                                    {a.comments && a.comments.length ? 
+                                        <span onClick={() => pv(b)} className="opacity-70">View all {a.comments.length} comments</span>
+                                        :undefined
+                                    }
+                                </div>
+                                <div className="flex gap-2 items-center pb-4 border-b border-solid" style={{borderBottomColor: 'rgb(219, 219, 219)'}}>
+                                    <input className="w-full focus:outline-none" onKeyUp={(e) => dc(e, b)} type="text" placeholder="Add a comment..."/>
+                                    <img src="svg/face-small.svg"/>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-1 text-sm">
-                                <span className="font-semibold">{a.likes} likes</span>
-                                <span><b className="font-semibold">{a.user}</b> {a.content.split('\n').shift()}</span>
-                                {a.comments && a.comments.length ? 
-                                    <span className="opacity-70">View all {a.comments.length} comments</span>
-                                    :undefined
-                                }
+                        ))
+                    }; ax();
+                })()
+            </script>
+            <div class="flex lg:px-40 flex-col mt-8 items-start px-2 gap-4">
+                <div class="flex items-center w-full font-semibold">
+                    <span class="w-1/2">Suggested Reels</span>
+                    <div class="w-1/2 gap-2 flex items-center justify-end">
+                        <img class="h-3" src="../14/svg/play-svgrepo-com.svg">
+                        <span>Watch all</span>
+                    </div>
+                </div>
+                <div id="scroll" class="scroll whitespace-nowrap w-full text-center overflow-x-auto"></div>
+                <div class="flex mt-4 items-center w-full font-semibold">
+                    <span class="w-1/2">Suggested for you</span>
+                    <div class="w-1/2 gap-2 flex items-center justify-end">
+                        <span>See all</span>
+                    </div>
+                </div>
+                <div id="scroll2" class="whitespace-nowrap scroll w-full text-center overflow-x-auto"></div>
+            </div>
+            <script type="text/babel">
+                (()=> {
+                    const scroll = createRoot($('scroll'));
+                    scroll.render(db.reels.map((a,b) => 
+                        <div key={b} className="w-32 h-44 bg-black rounded-md inline-flex bg-cover bg-center bg-no-repeat mr-1 text-white align-top flex-col items-start" style={{backgroundImage: `url('${a.img}')`}}>
+                            <div className="px-1 pb-2 rounded-md mt-auto grid grid-rows-1 items-start leading-6 w-full overflow-ellipsis overflow-hidden">
+                                <span className="pl-1 text-left w-full overflow-ellipsis overflow-hidden">{a.name}</span>
+                                <span className="flex items-center justify-start"><b className="font-normal text-[24px] icon"></b>{a.views}</span>
                             </div>
-                            <div className="flex gap-2 items-center pb-4 border-b border-solid" style={{borderBottomColor: 'rgb(219, 219, 219)'}}>
-                                <input className="w-full focus:outline-none" type="text" placeholder="Add a comment..."/>
-                                <img src="svg/face-small.svg"/>
+                        </div>
+                    ))
+                    const scroll2 = createRoot($('scroll2'));
+                    scroll2.render(db.follows.map((a,b) => 
+                        <div key={b} className="bg-inherit px-4 w-36 h-[11.5rem] rounded-md inline-flex mr-2 items-center pt-2 flex-col border-solid border border-gray-200 gap-1">
+                            <img src={a.img} className="rounded-full aspect-square h-20"/>
+                            <div className="grid grid-rows-2">
+                                <span>{a.name}</span>
+                                <span className="text-xs opacity-50">{a.txt}</span>
                             </div>
+                            <button className="bg-[#0077ff] rounded-sm w-[90%] text-white text-base tracking-wide">{a.txt == "Follows you" ? "Follow back" : "Follow"}</button>
                         </div>
                     ))
                 })()
