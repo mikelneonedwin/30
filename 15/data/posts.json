@@ -1,0 +1,50 @@
+[
+    {
+        "user": "gn6xofficial",
+        "age": "4d",
+        "likes": 200,
+        "content": "New music coming soon #kolo hope you all ready. I know I am ✌",
+        "img": "posts/gn6xofficial_363770573_702635441201153_4260730431638768357_n.webp",
+        "info": "Lagos, Nigeria",
+        "comments": [
+            {
+                "user": "kanta_official9",
+                "content": "Promote it on @thewbrecords",
+                "age": "4d",
+                "replies": [
+                    {
+                        "user": "gn6xofficial",
+                        "content": "@kanta_official9 ok thanks"
+                    }
+                ]
+            },
+            {
+                "user": "vandujat",
+                "age": "4d",
+                "content": "Promote it on @_billboardrecord"
+            }
+        ]
+    },
+    {
+        "user": "promzywild",
+        "info": "Owerri, Nigeria",
+        "age": "3d",
+        "img": "posts/363510837_296732192856495_1463206111161806629_n.jpg",
+        "likes": 3,
+        "content": "Magical Out now!! 🔥🔥🔥🔥 Stream this soothing sound and share the love 💙💙 \n https://push.fm/fl/promzywildmagical"
+    },
+    {
+        "user": "davidartwox",
+        "info": "Port Harcourt, Nigeria",
+        "age": "6d",
+        "img": "posts/davidartwox_362428902_1036229380875239_6889818314531424189_n.webp",
+        "content": "Pretty dark smh 💀 \n#darkart \n#noirartist"
+    },
+    {
+        "user": "deluxewebsite",
+        "age": "1w",
+        "info": "Los Angeles, California",
+        "img": "posts/362339880_1291035451533431_6735075978461660807_n.webp",
+        "content": "Awesome website design concept\n:\nFollow @deluxewebsite tag someone you love\n:\nBy @onethirdesigner"
+    }
+]

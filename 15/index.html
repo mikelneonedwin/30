@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Instagram</title>
+        <link rel="icon" href="../14/favicon.ico">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <script src="../js/react.production.min.js"></script>
+        <script src="../js/react-dom.production.min.js"></script>
+        <link rel="preload" href="data/posts.json" as="fetch" type="application/json">
+        <link rel="preload" href="data/stories.json" as="fetch" type="application/json">
+        <link rel="preload" href="data/suggestions.json" as="fetch" type="application/json">
+        <link rel="preload" href="data/users.json" as="fetch" type="application/json">
+        <link rel="stylesheet" href="../google-font.css">
+        <link rel="preload" href="../fonts/symbols.woff2" as="font" type="font/woff2">
+        <!-- <link rel="preload" href="../fonts/circula.ttf" as="font" type="font/ttf">
+        <link rel="preload" href="../fonts/icons.woff2" as="font" type="font/woff2">-->
+        <script type="module">
+            async function json(x){
+                return await (await fetch(x, {cache: 'force-cache'})).json()
+            }
+            const db = {
+                stories: await json('data/stories.json'),
+                posts: await json('data/posts.json'),
+                suggestions: await json('data/suggestions.json'),
+                users: await json('data/users.json')
+            }
+            const $ = (x) => document.getElementById(x) || document.querySelector(x);
+            Object.assign(window, ({db, $, createRoot: ReactDOM.createRoot}));
+            const txt = await (await fetch('../js/babel.min.js')).text();
+            const script = document.createElement("script");
+            script.textContent = txt;
+            document.head.appendChild(script);
+            const scr = Array.from(document.querySelectorAll('[type="text/babel"]')).map(a => a.textContent).map(a => Babel.transform(a, {presets: ['es2015'], plugins: ['transform-react-jsx']}).code).map(a => {
+                const elem = document.createElement("script");
+                elem.textContent = a;
+                return elem;
+            });
+            document.head.append(...scr);
+        </script>
+        <script src="../js/tailwindcss.js"></script>
+        <script src="../js/tailwind.config.js"></script>
+        <style type="text/tailwindcss">
+            header::before {
+                background-color: rgb(219, 219, 219);
+                content: '';
+                position: absolute;
+                @apply right-0 sm:left-0 sm:bottom-[-1px] lg:top-0 lg:bottom-0 lg:w-[1px] sm:h-[1px];
+            }
+            .scroll {
+                scrollbar-width: none;
+            }
+            .scroll::-webkit-scrollbar {
+                width: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="scroll lg:w-[18%] lg:bottom-0 lg:overflow-y-auto fixed bg-white left-0 flex sm:items-center lg:flex-col gap-8 sm:gap-4 sm:right-0 lg:pl-6 sm:py-2 sm:px-4 top-0">
+            <div class="lg:mt-12 sm:flex sm:items-center sm:justify-center sm:gap-2">
+                <img class="w-32 aspect-auto" src="svg/Instagram_logo.svg">
+                <img class="lg:hidden" src="svg/arrow.svg">
+            </div>
+            <div class="sm:fixed sm:bottom-0 sm:left-0 sm:right-0 flex gap-8 lg:flex-col sm:justify-evenly sm:px-8 sm:py-4 sm:bg-white" id="menu">
+                <p class="font-bold"><img src="svg/home.svg"><span>Home</span></p>
+                <p class="sm"><img src="svg/search.svg"><span>Search</span></p>
+                <p><img src="svg/explore.svg"><span>Explore</span></p>
+                <p><img src="svg/reels.svg"><span>Reels</span></p>
+                <p><img src="svg/message.svg"><span>Messages</span></p>
+                <p class="sm"><img src="svg/notifications.svg"><span>Notifications</span></p>
+                <p><img src="svg/create.svg"><span>Create</span></p>
+                <p><img class="rounded-full aspect-square h-6" src="users/358990471_1959327547762820_4733411079070548055_n.jpg"><span>Profile</span></p>
+                <p class="sm"><img src="svg/menu.svg"><span>More</span></p>
+            </div>
+            <style type="text/tailwindcss">
+                #menu>p {
+                    @apply flex gap-4 items-center;
+                }
+                #menu span, #menu>p.sm {
+                    @apply sm:hidden;
+                }
+            </style>
+            <div class="lg:hidden flex items-center gap-2 w-96">
+                <div class="flex items-center gap-4 w-full px-4 py-2 rounded-md bg-[#EFEFEF]">
+                    <img src="svg/search-input.svg">
+                    <input class="focus:outline-none bg-inherit" type="search" placeholder="Search">
+                </div>
+                <img class="lg:hidden" src="svg/notifications.svg">
+            </div>
+        </header>
+        <main class="sm:my-20 lg:w-[64%] lg:pr-12 lg:mx-auto px-2">
+            <section id="stories" class="whitespace-nowrap scroll w-full overflow-x-auto px-2 lg:mt-8"></section>
+            <script type="text/babel">
+                (() => {
+                    const stories = createRoot($('stories'));
+                    stories.render(db.stories.map((a,b) => 
+                        <div key={b} className="inline-flex flex-col gap-1 items-center justify-center mr-3 w-20 overflow-x-hidden overflow-ellipsis">
+                            <div className="rounded-full p-1 aspect-square" style={{backgroundImage: 'linear-gradient(to top right, #FC8D1A, #C635E0)'}}>
+                                <img className="aspect-square h-16 rounded-full" src={a.img}/>
+                            </div>
+                            <span className="text-sm w-full overflow-ellipsis overflow-x-hidden text-center">{a.name}</span>
+                        </div>
+                    ))
+                })() 
+            </script>
+            <section id="posts" class="mt-4 lg:px-40 gap-4 flex flex-col"></section>
+            <!-- <div class="h-"> -->
+            <script type="text/babel">
+                (() => {
+                    const posts = createRoot($('posts'));
+                    posts.render(db.posts.map((a,b) => 
+                        <div key={b} className="flex flex-col gap-4">
+                            <div className="flex gap-2 items-center px-1">
+                                <img className="h-11 rounded-full aspect-square" src={db.users.filter(b => b.username == a.user)[0].img}/>
+                                <div className="w-full grid grid-rows-2">
+                                    <span><b className="font-medium">{a.user}</b> <i className="opacity-70" style={{fontStyle: "normal"}}>• {a.age}</i></span>
+                                    {a.info ? <span className="text-sm">{a.info}</span> : undefined}
+                                </div>
+                                <span class="symbol">more_horiz</span>
+                            </div>
+                            <div>
+                                <img src={a.img}/>
+                            </div>
+                            <div className="flex items-center">
+                                <div className="w-1/2 flex gap-2 items-center">
+                                    <img src="svg/like.svg"/>
+                                    <img src="svg/comment.svg"/>
+                                    <img src="svg/share.svg"/>
+                                </div>
+                                <div className="w-1/2 flex items-center justify-end">
+                                    <img src="svg/bookmark.svg"/>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-1 text-sm">
+                                <span className="font-semibold">{a.likes} likes</span>
+                                <span><b className="font-semibold">{a.user}</b> {a.content.split('\n').shift()}</span>
+                                {a.comments && a.comments.length ? 
+                                    <span className="opacity-70">View all {a.comments.length} comments</span>
+                                    :undefined
+                                }
+                            </div>
+                            <div className="flex gap-2 items-center pb-4 border-b border-solid" style={{borderBottomColor: 'rgb(219, 219, 219)'}}>
+                                <input className="w-full focus:outline-none" type="text" placeholder="Add a comment..."/>
+                                <img src="svg/face-small.svg"/>
+                            </div>
+                        </div>
+                    ))
+                })()
+            </script>
+        </main>
+        <nav>
+            <section id="suggestions" class="fixed top-0 right-8 w-[18%] mt-8 sm:hidden justify-center">
+                <div class="flex gap-2 items-center mb-4 text-sm">
+                    <img class="aspect-square h-11 rounded-full" src="users/358990471_1959327547762820_4733411079070548055_n.jpg">
+                    <div class="flex flex-col w-4/5">
+                        <span>mikelneonedwin</span>
+                        <span>Mikel Edwin</span>
+                    </div>
+                    <a class="text-[#0095F6] font-semibold" href="#">Switch</a>
+                </div>
+                <div class="text-base mb-4">
+                    <span class="opacity-80 font-semibold">Suggested for you</span>
+                    <span class="float-right">See All</span>
+                </div>
+                <div class="flex flex-col gap-4"></div>
+                <div id="footer" class="sm:hidden mt-8 text-xs opacity-50 flex flex-col gap-4">
+                    <div></div>
+                    <span>© 2023 Instagram from Meta</span>
+                </div>
+                <script type="text/babel">
+                    const footer = createRoot($('footer').children[0]);
+                    footer.render(['About', 'Help', 'Press', 'API', 'Jobs', 'Privacy', 'Terms', 'Locations', 'Language', 'Meta Verified'].map((a,b,c) => 
+                        [
+                            <a href="#" key={'a' + b}>{a}</a>, b != c.length - 1 ? ' · ' : undefined
+                        ]
+                    ))
+                </script>
+            </section>
+            <script type="text/babel">
+                (() => {
+                    const suggestions = createRoot($('suggestions').children[2]);
+                    suggestions.render(db.suggestions.map((a,b) => 
+                        <div className="flex gap-2 items-center text-sm">
+                            <img src={a.img} className="h-11 rounded-full aspect-square"/>
+                            <div className="grid grid-rows-2 gap-1 w-full">
+                                <span>{a.name}</span>
+                                <span>{a.text}</span>
+                            </div>
+                            <span class="text-[#0095F6] font-semibold">Follow</span>
+                        </div>
+                    ))
+                })()
+            </script>
+        </nav>
+    </body>
+</html>
