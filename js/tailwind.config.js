@@ -1,5 +1,6 @@
 try{
     tailwind.config = {
+        darkMode: ['class', 'html[class~=dark]'],
         theme: {
             extend: {
                 screens: {
