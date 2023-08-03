@@ -16,10 +16,10 @@
         <script src="../js/react.production.min.js"></script>
         <script src="../js/react-dom.production.min.js"></script>
         <script type="module">
-            import bs from '../js/module.js'
+            import bs, {ls, gs} from '../js/module.js'
             Object.assign(window, {
-                json: await (await fetch('kit/data.json')).json(),
-                babel: await (await fetch('../js/babel.min.js')).text(),
+                json: gs('data') || ls('data', await (await fetch('kit/data.json')).json()),
+                babel: gs('babel') || ls('babel', await (await fetch('../js/babel.min.js')).text()),
                 $: (x) => ReactDOM.createRoot(document.getElementById(x) || document.querySelector(x))
             })
             await bs();

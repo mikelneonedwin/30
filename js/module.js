@@ -10,3 +10,16 @@ export default async function(){
     });
     document.head.append(...scr);
 }
+
+export const ls = function(key, data){
+    localStorage.setItem(key, JSON.stringify(data));
+    return JSON.parse(localStorage.getItem(key));
+}
+export const gs = function(key){
+    if(localStorage.getItem(key)){
+        try{
+            return JSON.parse(localStorage.getItem(key))
+        } catch {return localStorage.getItem(key)}
+    }
+    return null;
+}
