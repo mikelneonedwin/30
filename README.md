@@ -118,6 +118,12 @@ Frameworks: TailwindCSS, React.js
 
 &#9432; Light and dark theme enabled
 
+### Day 19: [Results Summary Component](https://30-smoky.vercel.app/19/)
+
+![Day 19 Screenshot](screenshots/19.png)
+
+Frameworks: TailwindCSS, React.js
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
