@@ -128,6 +128,8 @@ Frameworks: TailwindCSS, React.js
 
 ![Day 20 Screenshot](screenshots/20.png)
 
+Frameworks: TailwindCSS
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
