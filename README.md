@@ -124,6 +124,10 @@ Frameworks: TailwindCSS, React.js
 
 Frameworks: TailwindCSS, React.js
 
+### Day 20: [Stats Preview Card](https://30-smoky.vercel.app/20/)
+
+![Day 20 Screenshot](screenshots/20.png)
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
