@@ -130,6 +130,12 @@ Frameworks: TailwindCSS, React.js
 
 Frameworks: TailwindCSS
 
+### Day 21: [Number Guessing Game](https://30-smoky.vercel.app/21/)
+
+![Day 21 Screenshot](screenshots/21.png)
+
+Frameworks: TailwindCSS
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore

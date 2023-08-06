@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-us" class="h-full">
+    <head>
+        <title>Number Guessing Game</title>
+        <link rel="icon" href="../20/kit/images/favicon-32x32.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <script src="../js/tailwindcss.js"></script>
+        <script src="../js/tailwind.config.js"></script>
+        <style type="text/tailwindcss">
+            .dk {
+                color: hsl(223, 47%, 23%);
+            }
+            @media only screen and (min-width: 1024px){
+                body {
+                    background-image: url('../17/kit/images/pattern-background-desktop.svg');
+                }
+            }
+            @media only screen and (max-width: 1023px){
+                body {
+                    background-image: url('../17/kit/images/pattern-background-mobile.svg');
+                }
+            }
+            .tk:hover {
+                background-color: hsl(224, 23%, 55%) !important;
+            }
+            .ax:hover, .ax:focus {
+                color: hsl(223, 47%, 23%);
+            }
+            * {
+                --b: hsl(245, 75%, 52%);
+            }
+            #btn>button, span {
+                @apply bg-teal-500 text-white font-semibold py-2 rounded-md text-center;
+            }
+        </style>
+    </head>
+    <body class="h-full lg:bg-contain sm:bg-cover sm:bg-center bg-no-repeat lg:bg-top flex items-center justify-center" style="background-color: hsl(225, 100%, 94%); color:  hsl(224, 23%, 55%)">
+        <main class="flex flex-col gap-4 lg:w-1/3 bg-white sm:w-full rounded-lg">
+            <div class="px-4 flex flex-col pt-4 pb-8 gap-4 items-center justify-center rounded-b-lg">
+                <p class="dk font-bold text-xl"><!--Chances left--></p>
+                <div class="flex bg-cyan-400 aspect-square rounded-full lg:w-[55%] sm:w-[60%] gap-6 flex-col items-center justify-center bg-center bg-no-repeat bg-cover" style="text-shadow: 3px 3px 5px black;">
+                    <h1 class="text-6xl font-bold text-white"><!--(n)--></h1>
+                    <p class="text-white font-bold text-lg"><!--Last choice--></p>
+                </div>
+                <h3 class="font-bold text-lg"><!--(n start) - (n - end)--></h3>
+                <p class="text-lg"><!--Higher || Lower --></p>
+                <div class="w-full flex items-center gap-1">
+                    <input type="text" readonly class="py-2 px-3 rounded-md w-[90%] bg-cyan-300 text-white font-bold placeholder:text-white placeholder:font-normal focus:outline-none" placeholder="Guess the number"/>
+                    <button class="p-2  flex items-center w-[10%] rounded-full justify-center bg-cyan-400"><img src="send.svg" class="translate-y-0.5"></button>
+                </div>
+                <div id="btn" class="lg:hidden mt-4 grid grid-cols-3 grid-rows-3 gap-y-5 gap-x-2 w-full">
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <span>Del</span>
+                    <button>0</button>
+                    <span>Enter</span>
+                </div>
+            </div>
+            <script>
+                innerWidth >= 1024 && document.querySelector('[readonly]').removeAttribute('readonly');
+                document.querySelector('[type=text]').addEventListener('keydown', (e) => {
+                    const allowed = Array(10).fill(0).map((a,b) => `${a + b}`);
+                    e.key.length == 1 && !allowed.includes(e.key) && !e.altKey && !e.shiftKey && !e.ctrlKey && e.preventDefault();
+                })
+                Array.from(document.querySelector("#btn").children).forEach(a => {
+                    if(a.tagName == "BUTTON"){
+                        a.addEventListener('click', ({target}) => {
+                            document.querySelector('[type=text]').value += target.innerText;
+                        })
+                    }
+                })
+                function game() {
+                    const x = (y) => document.querySelector(y);
+                    const {r1, r2, r3} = (() => {
+                        const x1 = ~~(Math.random() * 100);
+                        const x2 = ~~(Math.random() * 100);
+                        const x3 = ~~(Math.random() * Math.abs(x2 - x1));
+                        const result = { r1: x1 > x2 ? x2 : x1, r2: x1 > x2 ? x1 : x2 };
+                        result.r3 = x3 + result.r1;
+                        return result;
+                    })();
+                    const chances = new Proxy({val: 10, elem: x('p')}, {
+                        set(target, property, value){
+                            if(property == "val"){
+                                target.val = value;
+                                target.elem.innerText = `You have ${target.val} chances left`;
+                                if(target.val == 0) end();
+                            } else target[property] = value;
+                            return true;
+                        },
+                    })
+                    const choices = new Proxy({new: '', old: '', elem: x('p:nth-child(2)'), elem2: x('h1'), elem3: x('p:nth-child(4)')}, {
+                        set(target, property, value){
+                            target.old = target.new;
+                            target.new = value;
+                            if(target.old != '') target.elem.innerText = `Your last choice: ${target.old}`;
+                            target.elem2.innerText = target.new;
+                            if(target.new != r3) {
+                                target.elem3.innerText = target.new > r3 ? 'Go lower' : 'Go higher';
+                                chances.val--;
+                            } else won();
+                        }
+                    })
+                    if(innerWidth >= 1024) x('[type=text]').onchange = () => {choices.new = x('[type=text]').value; x('[type=text]').value = '';}
+                    x('button').onclick = () => {choices.new = x('[type=text]').value; x('[type=text]').value = '';}
+                    x('h3').innerText = `Guess from ${r1} to ${r2}`;
+                    chances.elem.innerText = 'You have 10 chances left';
+                    function end(){
+                        x('main').classList.add('xl:hidden');
+                        x('main:nth-child(2)').classList.remove('hidden');
+                        x('b').innerText = r3;
+                        setTimeout(() => location.reload(), 4500);
+                    }
+                    function won(){
+                        x('main').classList.add('xl:hidden');
+                        x('main:nth-child(3)').classList.remove('hidden');
+                        setTimeout(() => location.reload(), 4500);
+                    }
+                    x('button+span').onclick = () => {
+                        const i = x('[type=text]');
+                        i.value = i.value.slice(0, i.value.length - 1);
+                    }
+                    x('span+button+span').onclick = x('button').onclick;
+                }
+                game();
+            </script>
+        </main>
+        <main class="dk hidden text-5xl p-8 leading-loose rounded-lg bg-white text-center font-extrabold">You lost, the answer was <b></b> 😒</main>
+        <main class="dk hidden text-5xl p-8 leading-loose rounded-lg bg-white text-center font-extrabold">Congratulations, you guessed it 🥳</main>
+    </body>
+</html>
