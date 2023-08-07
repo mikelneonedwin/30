@@ -82,7 +82,7 @@
                     const x = (y) => document.querySelector(y);
                     const {r1, r2, r3} = (() => {
                         const x1 = ~~(Math.random() * 100);
-                        const x2 = ~~(Math.random() * 100);
+                        const x2 = ~~(Math.random() * cs('lv', false, 100));
                         const x3 = ~~(Math.random() * Math.abs(x2 - x1));
                         const result = { r1: x1 > x2 ? x2 : x1, r2: x1 > x2 ? x1 : x2 };
                         result.r3 = x3 + result.r1;
@@ -121,6 +121,7 @@
                         setTimeout(() => location.reload(), 4500);
                     }
                     function won(){
+                        cs('lv', 100);
                         x('main').classList.add('xl:hidden');
                         x('main:nth-child(3)').classList.remove('hidden');
                         setTimeout(() => location.reload(), 4500);
@@ -130,8 +131,13 @@
                         i.value = i.value.slice(0, i.value.length - 1);
                     }
                     x('span+button+span').onclick = x('button').onclick;
+                    x('[type=text]').focus();
                 }
                 game();
+                function cs(x, y, z){
+                    if(y){ localStorage.setItem(x, Number(cs(x)) + y)}
+                    return localStorage.getItem(x) || localStorage.setItem(x, z) || localStorage.getItem(x);
+                }
             </script>
         </main>
         <main class="dk hidden text-5xl p-8 leading-loose rounded-lg bg-white text-center font-extrabold">You lost, the answer was <b></b> 😒</main>
