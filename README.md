@@ -136,6 +136,12 @@ Frameworks: TailwindCSS
 
 Frameworks: TailwindCSS
 
+### Day 22: [Static Job Listing](https://30-smoky.vercel.app/22/)
+
+![Day 22 Screenshot](screenshots/22.png)
+
+Frameworks: TailwindCSS, React.js
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
