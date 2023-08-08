@@ -142,6 +142,12 @@ Frameworks: TailwindCSS
 
 Frameworks: TailwindCSS, React.js
 
+### Day 23: [Sunny Side Agency Landing Page](https://30-smoky.vercel.app/23/)
+
+![Day 23 Screenshot](screenshots/23.png)
+
+Frameworks: TailwindCSS, React.js
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
