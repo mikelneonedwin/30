@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Reaction Timer</title>
+        <link rel="icon" href="kit/images/favicon-32x32.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <script src="../js/tailwindcss.js"></script>
+        <script src="../js/tailwind.config.js"></script>
+        <script src="../js/vue@3.0.2.prod.js"></script>
+        <style type="text/tailwindcss">
+            
+        </style>
+    </head>
+    <body>
+        <div id="app" class="text-center text-[#444] mt-32">
+            <h1 class="text-5xl font-bold mb-4">Reaction Timer</h1>
+            <button @click="start" class="bg-[#0faf87] text-white border-none py-2 px-4 rounded-md text-base tracking-wide cursor-pointer m-2 disabled:opacity-20 disabled:cursor-not-allowed" :disabled="isPlaying">Play</button>
+            <div v-if="showBox" class="w-[400px] rounded-2xl bg-[#0faf87] text-white text-center py-24 px-0 my-10 mx-auto" @click="stopTimer">Click Me</div>
+            <div v-if="showResults" class="text-xl flex flex-col gap-4">
+                <p>Reaction time is {{ score }} ms</p>
+                <p class="text-base text-[#0faf87] font-bold">{{ rank }}</p>
+            </div>
+        </div>
+        <script>
+            const game = Vue.createApp({
+                data(){
+                    return {
+                        timer: null,
+                        showBox: false,
+                        showResults: false,
+                        score: null,
+                        isPlaying: false,
+                        delay: null,
+                        reactionTime: 0
+                    }
+                },
+                methods: {
+                    start(){
+                        /* Start game */
+                        this.delay = 2000 + Math.random() * 5000;
+                        this.isPlaying = true;
+                        this.showResults = false;
+                        setTimeout(() => {
+                            this.showBox = true;
+                            this.startTimer();
+                        }, this.delay)
+                    },
+                    startTimer(){
+                        this.reactionTime = 0;
+                        this.timer = setInterval(() => {
+                            this.reactionTime += 10;
+                        }, 10)
+                    },
+                    stopTimer(){
+                        clearInterval(this.timer);
+                        this.showBox = false;
+                        this.endGame(this.reactionTime);
+                    },
+                    endGame(){
+                        /* End Game */
+                        this.score = this.reactionTime;
+                        this.isPlaying = false;
+                        this.showResults = true;
+                        if(this.score < 250){
+                            this.rank = 'Ninja Fingers'
+                        } else if (this.score < 400){
+                            this.rank = 'Rapid Reflexes'
+                        } else {
+                            this.rank = 'Snail Pace'
+                        }
+                    }
+                }
+            })
+            game.mount('#app');
+        </script>
+    </body>
+</html>

@@ -148,6 +148,12 @@ Frameworks: TailwindCSS, React.js
 
 Frameworks: TailwindCSS, React.js
 
+### Day 24: [Reaction Timer](https://30-smoky.vercel.app/24/)
+
+![Day 24 Screenshot](screenshots/24.png)
+
+Frameworks: TailwindCSS, Vue.js
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
