@@ -56,7 +56,7 @@
         </div>
         <div class="lg:col-span-3 lg:row-span-2 grid lg:grid-cols-3 lg:rid-rows-2 items-start gap-4 sm:grid-rows-6">
             <div v-for="(item, index) in json" class="pt-12 rounded-lg h-full bg-right-top bg-no-repeat" :key="index" :class="col[index]" :style="'background-image: url('+ img[index] +')'">
-                <div class="flex items-start w-full bg-myDarkBlue hover:bg-myDesaturatedBlue h-full py-4 px-5 gap-4 rounded-lg flex-col">
+                <div class="flex items-start w-full bg-myDarkBlue hover:bg-myDesaturatedBlue h-full py-4 px-5 lg:gap-4 sm:gap-6 rounded-lg flex-col">
                     <div class="flex items-center w-full">
                         <div class="w-1/2">
                             <b>{{ item.title }}</b>
