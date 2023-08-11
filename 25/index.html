@@ -65,9 +65,9 @@
                             <b class="symbol">more_horiz</b>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2">
-                        <h1 class="text-4xl font-light">{{ item.timeframes[mode].current }}hrs</h1>
-                        <p>{{ vmodes }} - {{ item.timeframes[mode].previous }}hrs</p>
+                    <div class="flex lg:flex-col sm:items-end sm:w-full gap-2">
+                        <h1 class="text-4xl font-light sm:w-1/2">{{ item.timeframes[mode].current }}hrs</h1>
+                        <p class="sm:w-1/2 sm:flex sm:items-end sm:justify-end">{{ vmodes }} - {{ item.timeframes[mode].previous }}hrs</p>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                         col: ['bg-myLightRedWork', 'bg-myLoftBluePlay', 'bg-myLightRedStudy', 'bg-myLimeGreenRExercise', 'bg-myVioletSocial', 'bg-mySoftOrangeSelfCare'],
                         vmode: 'Weekly',
                         modes: ['Daily', 'Weekly', 'Monthly'],
-                        imgTemp: ['icon-work.svg', 'icon-play.svg', 'icon-study.svg', 'icon-exercise.svg', 'icon-social.svg', 'icon-self-care.svg']
+                        img: ['icon-work.svg', 'icon-play.svg', 'icon-study.svg', 'icon-exercise.svg', 'icon-social.svg', 'icon-self-care.svg'].map(a => 'kit/images/' + a)
                     }
                 },
                 computed: {
@@ -94,9 +94,6 @@
                             Daily: 'Yesterday',
                             Monthly: 'Last Month'
                         })[this.vmode];
-                    },
-                    img(){
-                        return this.imgTemp.map(a => 'kit/images/' + a);
                     }
                 }
             }).mount('main');
