@@ -154,6 +154,12 @@ Frameworks: TailwindCSS, React.js
 
 Frameworks: TailwindCSS, Vue.js
 
+### Day 25: [Time Tracking Dashboard](https://30-smoky.vercel.app/25/)
+
+![Day 25 Screenshot](screenshots/25.png)
+
+Frameworks: TailwindCSS, Vue.js
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore

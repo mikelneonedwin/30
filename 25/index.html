@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-us" class="h-full">
+<head>
+    <title>Time Tracking Dashboard</title>
+    <link rel="icon" href="kit/images/favicon-32x32.png">
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <script src="../js/tailwindcss.js"></script>
+    <script type="module" src="tailwind.config.js"></script>
+    <script src="../js/vue@3.0.2.prod.js"></script>
+    <link rel="stylesheet" href="../google-font.css">
+</head>
+<body class="h-full lg:flex lg:items-center justify-center bg-myVeryDarkBlue text-white">
+    <main class="lg:grid sm:my-10 lg:grid-cols-4 lg:gap-4 lg:grid-rows-2 lg:w-3/4 sm:px-4 sm:flex sm:flex-col sm:gap-4">
+        <div class="bg-myDarkBlue lg:pb-8 sm:pb-4 rounded-lg row-span-2 flex flex-col gap-4">
+            <div class="bg-myBlue pb-10 rounded-lg py-4 px-6 flex lg:items-start sm:items-center gap-6 lg:flex-col">
+                <img src="kit/images/image-jeremy.png" class="aspect-square rounded-full lg:h-14 h-16 border-[2px] border-white border-solid">
+                <div>
+                    <span class="text-myPaleBlue">Report for</span>
+                    <h2 class="text-4xl leading-tight font-light">Jeremy Robson</h2>
+                </div>
+            </div>
+            <div class="flex lg:flex-col sm:justify-evenly gap-4 px-6 text-myDesaturatedBlue">
+                <span class="hover:text-white" :class="item == vmode ? 'text-white' : ''" v-for="item in modes" @click="vmode = item">{{ item }}</span>
+            </div>
+        </div>
+        <div class="lg:col-span-3 lg:row-span-2 grid lg:grid-cols-3 lg:rid-rows-2 items-start gap-4 sm:grid-rows-6">
+            <div v-for="(item, index) in json" class="pt-12 rounded-lg h-full bg-right-top bg-no-repeat" :key="index" :class="col[index]" :style="'background-image: url('+ img[index] +')'">
+                <div class="flex items-start w-full bg-myDarkBlue hover:bg-myDesaturatedBlue h-full py-4 px-5 gap-4 rounded-lg flex-col">
+                    <div class="flex items-center w-full">
+                        <div class="w-1/2">
+                            <b>{{ item.title }}</b>
+                        </div>
+                        <div class="w-1/2 items-end justify-end flex">
+                            <b class="symbol">more_horiz</b>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h1 class="text-4xl font-light">{{ item.timeframes[mode].current }}hrs</h1>
+                        <p>{{ vmodes }} - {{ item.timeframes[mode].previous }}hrs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const data = [ { "title": "Work", "timeframes": { "daily": { "current": 5, "previous": 7 }, "weekly": { "current": 32, "previous": 36 }, "monthly": { "current": 103, "previous": 128 } } }, { "title": "Play", "timeframes": { "daily": { "current": 1, "previous": 2 }, "weekly": { "current": 10, "previous": 8 }, "monthly": { "current": 23, "previous": 29 } } }, { "title": "Study", "timeframes": { "daily": { "current": 0, "previous": 1 }, "weekly": { "current": 4, "previous": 7 }, "monthly": { "current": 13, "previous": 19 } } }, { "title": "Exercise", "timeframes": { "daily": { "current": 1, "previous": 1 }, "weekly": { "current": 4, "previous": 5 }, "monthly": { "current": 11, "previous": 18 } } }, { "title": "Social", "timeframes": { "daily": { "current": 1, "previous": 3 }, "weekly": { "current": 5, "previous": 10 }, "monthly": { "current": 21, "previous": 23 } } }, { "title": "Self Care", "timeframes": { "daily": { "current": 0, "previous": 1 }, "weekly": { "current": 2, "previous": 2 }, "monthly": { "current": 7, "previous": 11 } } } ]
+            Vue.createApp({
+                data() {
+                    return {
+                        json: data,
+                        col: ['bg-myLightRedWork', 'bg-myLoftBluePlay', 'bg-myLightRedStudy', 'bg-myLimeGreenRExercise', 'bg-myVioletSocial', 'bg-mySoftOrangeSelfCare'],
+                        vmode: 'Weekly',
+                        modes: ['Daily', 'Weekly', 'Monthly'],
+                        imgTemp: ['icon-work.svg', 'icon-play.svg', 'icon-study.svg', 'icon-exercise.svg', 'icon-social.svg', 'icon-self-care.svg']
+                    }
+                },
+                computed: {
+                    mode() {
+                        return this.vmode.toLowerCase()
+                    },
+                    vmodes(){
+                        return ({
+                            Weekly: 'Last Week',
+                            Daily: 'Yesterday',
+                            Monthly: 'Last Month'
+                        })[this.vmode];
+                    },
+                    img(){
+                        return this.imgTemp.map(a => 'kit/images/' + a);
+                    }
+                }
+            }).mount('main');
+        </script>
+    </main>
+</body>
+</html>
