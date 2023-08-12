@@ -15,3 +15,9 @@ try{
 } catch{
     module.exports = config;
 }
+
+/*
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
