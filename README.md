@@ -160,6 +160,14 @@ Frameworks: TailwindCSS, Vue.js
 
 Frameworks: TailwindCSS, Vue.js
 
+### Day 26: [Todo App](https://30-smoky.vercel.app/26/)
+
+![Day 26 Screenshot](screenshots/26.png)
+
+Frameworks: TailwindCSS, Vue.js
+
+&#9432; Light and dark theme enabled
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
