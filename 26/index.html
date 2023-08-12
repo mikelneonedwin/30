@@ -98,7 +98,7 @@
             </span>
         </header>
         <template script type="vue-template" id="task-template">
-            <li class="flex border-b  border-solid items-center px-4 gap-4 bg-white lg:py-3 sm:py-4 dark:bg-dark_VeryDarkDesaturatedBlue" :class="index == 0 ? 'rounded-t-md' : ''">
+            <li @click.self="this.$emit('event')" class="flex border-b  border-solid items-center px-4 gap-4 bg-white lg:py-3 sm:py-4 dark:bg-dark_VeryDarkDesaturatedBlue" :class="index == 0 ? 'rounded-t-md' : ''">
                 <span @click="this.$emit('event')" class="aspect-square rounded-full p-1 border border-gray-400" :style="task.checked ? 'background-image: var(--checkbg)' : ''">
                     <img src="kit/images/icon-check.svg" :class="!task.checked ? 'invisible' : ''">
                 </span>
