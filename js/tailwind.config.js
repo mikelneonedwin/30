@@ -1,5 +1,6 @@
 const config = {
     darkMode: ['class', 'html[class~=dark]'],
+    content: ["./**/*.html"],
     theme: {
         extend: {
             screens: {
