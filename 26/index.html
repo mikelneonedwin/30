@@ -67,7 +67,7 @@
         </style>
     </head>
     <body class="dark:bg-dark_VeryDarkBlue">
-        <header class="lg:px-[25rem] sm:px-10 bg-no-repeat bg-cover pt-10 h-48 overflow-visible flex flex-col gap-6">
+        <header class="lg:px-[25rem] sm:px-10 bg-no-repeat bg-cover pt-10 h-44 overflow-visible flex flex-col gap-6">
             <div class="flex items-center">
                 <h1 class="font-semibold w-1/2 text-white tracking-[0.3em] text-3xl">TODO</h1>
                 <div class="w-1/2 flex items-center justify-end">
@@ -97,7 +97,7 @@
                 <button v-for="(state, filter) in filters" class="font-semibold" @click="cState(filter)" :class="state ? 'text-myBrightBlue' : ''">{{filter}}</button>
             </span>
         </header>
-        <template script type="vue-template" id="task-template">
+        <script type="vue-template" id="task-template">
             <li @click.self="this.$emit('event')" class="flex border-b  border-solid items-center px-4 gap-4 bg-white lg:py-3 sm:py-4 dark:bg-dark_VeryDarkDesaturatedBlue" :class="index == 0 ? 'rounded-t-md' : ''">
                 <span @click="this.$emit('event')" class="aspect-square rounded-full p-1 border border-gray-400" :style="task.checked ? 'background-image: var(--checkbg)' : ''">
                     <img src="kit/images/icon-check.svg" :class="!task.checked ? 'invisible' : ''">
@@ -107,7 +107,7 @@
                     <img src="kit/images/icon-cross.svg">
                 </span>
             </li>
-        </template script>
+        </script>
         <script>
             /* task-template */
             const taskTemplate = {
@@ -124,7 +124,7 @@
                             { checked: false, text: 'Read for 1 hour' },
                             { checked: false, text: 'Pick up groceries' },
                             { checked: false, text: 'Complete Todo App on Frontend Mentor' }
-                        ],
+                        ].filter(() => false),
                         filters: {
                             All: true,
                             Active: false,
@@ -145,7 +145,7 @@
                         this.filters[index] = true;
                     },
                     keyup({key, target}){
-                        if(key == "Enter"){
+                        if(key == "Enter" && target.value.length){
                             this.tasks.push({
                                 checked: false,
                                 text: target.value
