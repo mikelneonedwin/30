@@ -168,6 +168,12 @@ Frameworks: TailwindCSS, Vue.js
 
 &#9432; Light and dark theme enabled
 
+### Day 27: [URL Shortener](https://30-smoky.vercel.app/27)
+
+![Day 27 Screenshot](screenshots/27.png)
+
+Frameworks: TailwindCSS, Vue.js
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
