@@ -186,6 +186,18 @@ Frameworks: TailwindCSS
 
 Frameworks: TailwindCSS, Vue.js
 
+### Day 30: [Weather App](https://weather-app-30.vercel.app/)
+
+![Day 30 Screenshot](screenshots/30.png)
+
+Frameworks: TailwindCSS, React.js
+
+Other Tools: [WeatherAPI](https://www.weatherapi.com/)
+
+GitHub Repo: [https://github.com/ErictheWebSev/Weather_app/](https://github.com/ErictheWebSev/Weather_app/)
+
+&#9432; Collab with [Eric Alfred](https://github.com/ErictheWebSev)
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
