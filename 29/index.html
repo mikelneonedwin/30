@@ -118,11 +118,18 @@
                             })
                         }, 750)
                     },
-                    inpKeyUp({key, target:{value}}){
-                        if(key == "Enter") this.processInput(value);
+                    inpKeyUp({key, target}){
+                        const { value } = target;
+                        if(key == "Enter") {
+                            this.processInput(value);
+                            target.value = '';
+                            target.focus();
+                        };
                     },
                     btnClick({target}){
                         this.processInput(target.previousElementSibling.value);
+                        target.previousElementSibling.value = '';
+                        target.previousElementSibling.focus();
                     }
                 },
                 updated: () => scroll(0, document.documentElement.scrollHeight - innerHeight)
