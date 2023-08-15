@@ -174,6 +174,12 @@ Frameworks: TailwindCSS, Vue.js
 
 Frameworks: TailwindCSS, Vue.js
 
+### Day 28: [Testimonial Grid Section](https://30-smoky.vercel.app/28/)
+
+![Day 28 Screenshot](screenshots/28.png)
+
+Frameworks: TailwindCSS
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
