@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>BODMAS Game</title>
+        <link rel="icon" href="../1/images/favicon-32x32.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, mimimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <link rel="stylesheet" href="index.css">
+        <script src="../js/vue@3.0.2.prod.js"></script>
+        <link rel="stylesheet" href="../google-font.css">
+    </head>
+    <body class="bg-[#F0F0F0]">
+        <section class="pt-16">
+            <header class="bg-white shadow-lg fixed w-screen top-0 flex items-center py-2 px-4 gap-4">
+                <img class="rounded-full aspect-square h-12" src="../28/kit/images/image-patrick.jpg">
+                <div class="flex flex-col gap-0 items-start">
+                    <span class="font-semibold">B-O-T</span>
+                    <span class="text-[#42848C]">Active</span>
+                </div>
+            </header>
+            <main class="py-4 px-4 flex flex-col gap-4">
+                <div class="bot"> 👋 Good {{greeting}}, I'm B-O-T <br> Welcome to the BODMAS Challenge!</div>
+                <div class="bot">I'm your math buddy, ready to test your mathematical skills. <br>Are you up for the challenge? <br>If yes, let's dive in and solve some expressions together. 💪</div>
+                <div class="bot">When possible, round up your answer to two deccimal points</div>
+                <div v-for="text in history" :class="text.person" v-html="text.text"></div>
+            </main>
+            <footer class="fixed bg-white bottom-0 w-screen py-4 px-4 flex items-center gap-4">
+                <input @keyUp="inpKeyUp" class="bg-[#F0F0F0] py-2 focus:outline-none px-4 w-full rounded-lg" placeholder="Type here...">
+                <button @click="btnClick" class="bg-[#703EFF] text-white font-semibold py-1.5 px-2 rounded-md">Send</button>
+            </footer>
+        </section>
+        <script>
+            function question(){
+                function random(x){
+                    let res = Math.floor(Math.random() * x);
+                    while(res == 0) res = Math.floor(Math.random() * x);
+                    return res;
+                }
+                function select(from, length){
+                    let res = [];
+                    while(res.length < length){
+                        const index = random(from.length);
+                        res.push(from[index]);
+                    }
+                    return res;
+                }
+                let q_count = 0, score = 0, start = true, o_ans = undefined, n_ans = undefined, max = 10, loss = 0;
+                const operands = ['+', '-', '/', '*'];
+                return function(inp){
+                    let comment = '';
+                    const length = random(operands.length);
+                        const operators = select(operands, length)
+                        const limit = Math.floor(score / 5) + 10;
+                        const number_range = Array(limit + 1).fill(0).map((a,b) => b);
+                        const select_num = select(number_range, operators.length + 1);
+                        let q = select_num.reduce((a,b,c) => {
+                            if(c == select_num.length - 1) return a += b;
+                            a += `${b} ${operators[c]} `;
+                            return a;
+                        }, '');
+                        n_ans = eval(q).toFixed(2);
+                    if(start == true){
+                        start = false;
+                        o_ans = n_ans
+                        return 'Solve: ' + q;
+                    } else {
+                        try {
+                            inp = Number(inp).toFixed(2);
+                        } catch {}
+                        if(inp == o_ans) {
+                            score++;
+                            comment += 'Correct!'
+                        } else {
+                            loss++;
+                            comment += `Wrong, the answer is ${String(o_ans)}`
+                        }
+                        comment += `<br>Wins: ${score}, Losses: ${loss} <br><br> Question ${score + loss + 1} <br>Solve: ${q}`
+                        o_ans = n_ans;
+                    }
+                    return comment;
+                }
+            }
+            Vue.createApp({
+                data(){
+                    const hr = (new Date()).getHours();
+                    let greeting;
+                    if(hr < 12){
+                        greeting = 'Morning';
+                    } else if(hr < 17){
+                        greeting = 'Afternoon';
+                    } else if(hr < 21) {
+                        greeting = 'Evening';
+                    } else {
+                        greeting = 'Night'
+                    }
+                    const ask = question();
+                    return {
+                        greeting: greeting,
+                        convo: ask,
+                        history: [{person: "bot", text: ask()}],
+                    }
+                },
+                methods: {
+                    processInput(ans){
+                        this.history.push({
+                            person: "user",
+                            text: ans
+                        })
+                        setTimeout(() => {
+                            this.history.push({
+                                person: "bot",
+                                text: this.convo(ans)
+                            })
+                        }, 750)
+                    },
+                    inpKeyUp({key, target:{value}}){
+                        if(key == "Enter") this.processInput(value);
+                    },
+                    btnClick({target}){
+                        this.processInput(target.previousElementSibling.value);
+                    }
+                },
+                updated: () => scroll(0, document.documentElement.scrollHeight - innerHeight)
+            }).mount('section');
+        </script>
+    </body>
+</html>

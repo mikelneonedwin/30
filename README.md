@@ -180,6 +180,12 @@ Frameworks: TailwindCSS, Vue.js
 
 Frameworks: TailwindCSS
 
+### Day 29: [BODMAS Game](https://30-smoky.vercel.app/29/)
+
+![Day 29 Screenshot](screenshots/29.png)
+
+Frameworks: TailwindCSS, Vue.js
+
 <!-- Continue this pattern for each day of the challenge -->
 
 ## How to Explore
